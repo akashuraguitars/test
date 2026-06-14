@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品詳情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+</head>
+<body class="bg-black text-white bg-[url('bgrond.jpg')] bg-fixed bg-cover bg-center">
+
+    <!-- 導航列 -->
+    <nav class="bg-black text-white p-2 md:p-5 sticky top-0 z-50">
+        <div class="w-full px-1 flex flex-wrap justify-center items-center text-[9px] md:text-sm uppercase font-light">
+            <ul class="flex items-center text-[9px] md:text-sm uppercase font-light" style="gap: clamp(0.25rem, 3vw, 2rem);">
+                <li class="relative">
+                    <a href="index.html" class="hover:text-gray-400">HOME</a>
+                </li>
+                <li class="relative">
+                    <button onclick="toggleStory()" class="hover:text-gray-400">STORY</button>
+                    <div id="story-dropdown" class="absolute right-0 mt-2 w-64 bg-white text-black shadow-xl hidden p-4 z-50">
+                    </div>
+                </li>
+                <li class="relative">
+                    <a href="index.html?news=1" class="hover:text-gray-400">NEWS</a>
+                </li>
+                <li class="relative">
+                    <button onclick="toggleProducts()" class="hover:text-gray-400">PRODUCTS</button>
+                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white text-black shadow-xl hidden p-2 z-50"></div>
+                </li>
+                <li class="text-gray-600 cursor-not-allowed">ARTISTS</li>
+                <li class="text-gray-600 cursor-not-allowed">CONTACT</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 中間品牌區塊：同步 index.html 大比例設計 -->
+    <div id="brand-header" class="flex flex-col items-center justify-center py-1.5 bg-white shadow-sm border-b border-gray-100 px-4">
+        <div class="w-[85%] md:w-[45%] max-w-[650px] flex flex-col items-center">
+            <div id="brand-logo-container" class="w-full flex justify-center mb-0">
+                <img id="brand-image" src="logo.png" alt="Akashura Guitars" class="w-full h-auto object-contain">
+            </div>
+            <h1 id="brand-title" class="text-4xl md:text-5xl font-extrabold tracking-widest text-black uppercase hidden">Akashura Guitars</h1>
+            <p id="brand-slogan" class="w-full text-center text-[9px] md:text-xs text-gray-500 font-light uppercase mt-1 tracking-[0.26em] md:tracking-[0.43em] whitespace-nowrap pl-[0.26em] md:pl-[0.43em]">Crafting Personality.</p>
+        </div>
+    </div>
+
+    <div class="p-10">
+        <div id="detail-view" class="max-w-6xl mx-auto bg-white p-8 rounded shadow">
+            <p>Loading details...</p>
+        </div>
+    </div>
+
+    <script>
+        const client = contentful.createClient({
+            space: 'w2up5vfofaou',
+            environment: 'codex',
+            accessToken: 'VGNRIRnLauegwmjZqzrm5zlceDtZt1Tq42PWr8Oh2Co'
+        });
+
+        const dropdown = document.getElementById('dropdown-menu');
+        const storyDropdown = document.getElementById('story-dropdown');
+        const brandImage = document.getElementById('brand-image');
+        const brandSlogan = document.getElementById('brand-slogan');
+
+        function toggleProducts() { dropdown.classList.toggle('hidden'); storyDropdown.classList.add('hidden'); }
+        function toggleStory() { storyDropdown.classList.toggle('hidden'); dropdown.classList.add('hidden'); }
+
+        async function syncNav() {
+            try {
+                const catData = await client.getEntries({ content_type: 'category' });
+                dropdown.innerHTML = catData.items.map(cat => `
+                    <a href="index.html?cat=${cat.sys.id}" class="block px-4 py-2 hover:bg-gray-100 uppercase text-sm">${cat.fields.name || 'Untitled'}</a>
+                `).join('');
+                
+                const storyData = await client.getEntries({ content_type: 'story' });
+                storyDropdown.innerHTML = storyData.items.map(s => `
+                    <a href="index.html?story=${s.sys.id}" class="block px-4 py-2 hover:bg-gray-100 uppercase text-sm">${s.fields.brandStory || 'Story'}</a>
+                `).join('');
+                
+                const siteData = await client.getEntries({ content_type: 'siteSettings', include: 1 });
+                if (siteData.items.length > 0) {
+                    const fields = siteData.items[0].fields;
+                    if (fields.brandName) brandImage.src = 'https:' + fields.brandName.fields.file.url;
+                    if (fields.slogan) brandSlogan.textContent = fields.slogan;
+                }
+            } catch (err) { console.error(err); }
+        }
+        syncNav();
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+
+        async function fetchDetail() {
+            try {
+                const entry = await client.getEntry(productId);
+                const fields = entry.fields;
+                let imageHtml = fields.image?.map(img => `<img src="https:${img.fields.file.url}" class="w-full h-auto max-h-[600px] object-contain rounded mb-4">`).join('') || '';
+
+                document.getElementById('detail-view').innerHTML = `
+                    ${imageHtml}
+                    <h1 class="text-4xl font-bold mb-4 uppercase tracking-tight text-gray-900">${fields.title}</h1>
+                    <div class="w-16 h-1 bg-black mb-6"></div>
+                    <p class="text-gray-700 whitespace-pre-line leading-relaxed text-lg mb-10">${fields.description || 'No description available.'}</p>
+                    <a href="index.html" class="inline-block px-8 py-3 bg-black text-white text-sm uppercase tracking-widest hover:bg-gray-800 transition rounded-none">BACK TO PRODUCTS</a>
+                `;
+            } catch (err) {
+                document.getElementById('detail-view').innerHTML = '<p class="text-red-500">Error loading product details.</p>';
+            }
+        }
+        fetchDetail();
+    </script>
+</body>
+</html>
