@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Shura Baritone concept guitar</title>
+  <desc id="desc">A baritone offset electric guitar concept in bone white and red black shadows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a0504"/>
+      <stop offset=".5" stop-color="#210608"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" x2="1">
+      <stop offset="0" stop-color="#ede6d8"/>
+      <stop offset=".62" stop-color="#7a1116"/>
+      <stop offset="1" stop-color="#080808"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="800" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="26"/>
+  <g transform="translate(75 220) rotate(-16 565 215)">
+    <path d="M187 343 C104 290 112 204 199 163 C254 137 315 154 357 195 C419 121 547 129 617 196 C678 255 667 334 596 371 C535 403 457 385 414 331 C374 403 258 391 187 343Z" fill="url(#body)" stroke="#fff8e8" stroke-opacity=".65" stroke-width="3"/>
+    <path d="M372 214 C432 176 535 184 586 238 C625 279 615 327 568 350 C510 379 445 351 416 309 C381 357 307 355 255 319 C206 285 212 234 264 207 C306 185 342 193 372 214Z" fill="#090909" opacity=".34"/>
+    <rect x="538" y="244" width="485" height="24" rx="10" fill="#e8dfcf" stroke="#201616" stroke-width="2"/>
+    <path d="M993 225 L1136 164 L1175 203 L1023 292 Z" fill="#160507" stroke="#fff8e8" stroke-opacity=".5" stroke-width="3"/>
+    <g fill="#f5ead7">
+      <circle cx="1128" cy="187" r="8"/><circle cx="1157" cy="207" r="8"/><circle cx="1088" cy="220" r="7"/>
+      <circle cx="1119" cy="241" r="7"/><circle cx="1047" cy="255" r="7"/><circle cx="1078" cy="273" r="7"/>
+    </g>
+    <rect x="322" y="257" width="92" height="34" rx="4" fill="#101010" stroke="#f5ead7" stroke-opacity=".4"/>
+    <rect x="468" y="257" width="92" height="34" rx="4" fill="#101010" stroke="#f5ead7" stroke-opacity=".4"/>
+    <rect x="405" y="306" width="104" height="18" rx="5" fill="#f2eadc"/>
+    <circle cx="259" cy="285" r="13" fill="#f2eadc"/>
+    <circle cx="282" cy="332" r="10" fill="#f2eadc"/>
+    <g stroke="#fff8e8" stroke-width="2" opacity=".86">
+      <line x1="214" y1="254" x2="1131" y2="183"/>
+      <line x1="215" y1="265" x2="1145" y2="198"/>
+      <line x1="216" y1="276" x2="1158" y2="212"/>
+      <line x1="217" y1="287" x2="1090" y2="225"/>
+      <line x1="218" y1="298" x2="1121" y2="244"/>
+      <line x1="219" y1="309" x2="1049" y2="256"/>
+    </g>
+  </g>
+  <text x="72" y="674" fill="#fff8e8" font-family="Arial, sans-serif" font-size="58" font-weight="900" letter-spacing="4">SHURA BARITONE</text>
+  <text x="78" y="724" fill="#ff575f" font-family="Arial, sans-serif" font-size="20" letter-spacing="8">LOW TUNING RITUAL MACHINE</text>
+</svg>
