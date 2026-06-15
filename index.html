@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <section id="totem-section" class="bg-black border-y border-red-950/70">
+    <section id="totem-section" class="hidden bg-black border-y border-red-950/70">
         <div class="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-16">
             <div class="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-6 lg:gap-10 items-stretch">
                 <div class="relative min-h-[500px] md:min-h-[650px] overflow-hidden bg-[#070303] border border-red-950/60">
@@ -98,7 +98,7 @@
         </div>
     </section>
 
-    <section id="symbol-wall" class="bg-[#070403] border-b border-red-950/70 overflow-hidden">
+    <section id="symbol-wall" class="hidden bg-[#070403] border-b border-red-950/70 overflow-hidden">
         <div class="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-14">
             <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-5 md:gap-7 items-stretch">
                 <div class="bg-black/85 text-white p-7 md:p-10 flex flex-col justify-center border border-red-950/70">
@@ -182,91 +182,72 @@
 
         async function renderHome() {
             hero.classList.remove('hidden');
-            totem.classList.remove('hidden');
-            symbolWall.classList.remove('hidden');
+            totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
             view.innerHTML = `
-                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-stretch">
-                    <div class="bg-black/75 border border-white/10 p-8 md:p-10 shadow-2xl backdrop-blur-sm">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">品牌脉动</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-6">个性不是选配，它就是这把琴的本体。</h2>
-                        <p class="text-gray-300 leading-relaxed text-base md:text-lg">Akashura Guitars 目前聚焦两条开发方向：NEON BEATS 提供现代 Strat-style 的泛用性，AKSHURA 则锁定更具攻击性的金属声线。</p>
-                        <div class="grid grid-cols-3 gap-4 mt-8 text-center">
-                            <div class="border border-white/10 py-5">
-                                <p class="text-2xl font-black text-white">25.5</p>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">有效弦长平台</p>
+                <section class="col-span-3">
+                    <div class="grid grid-cols-1 md:grid-cols-3 border border-white/10 bg-black/80">
+                        <button onclick="renderProductFamilyBySlug('electric-guitars')" class="group relative min-h-[280px] overflow-hidden text-left border-b md:border-b-0 md:border-r border-white/10">
+                            <img src="assets/stage-guitars-red.jpg" class="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:scale-105 transition duration-700" alt="电吉他">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="absolute left-6 right-6 bottom-6">
+                                <p class="text-[10px] uppercase tracking-[0.34em] text-red-500 mb-3">Electric Guitars</p>
+                                <h2 class="text-3xl font-black uppercase">电吉他</h2>
+                                <p class="mt-3 text-sm text-gray-300">AKSHURA / NEON BEATS</p>
                             </div>
-                            <div class="border border-white/10 py-5">
-                                <p class="text-2xl font-black text-white">24</p>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">品格配置</p>
+                        </button>
+                        <button onclick="renderProductFamilyBySlug('electric-bass')" class="group relative min-h-[280px] overflow-hidden text-left border-b md:border-b-0 md:border-r border-white/10">
+                            <img src="assets/banner-electric-bass.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition duration-700" alt="电 Bass">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
+                            <div class="absolute left-6 right-6 bottom-6">
+                                <p class="text-[10px] uppercase tracking-[0.34em] text-red-500 mb-3">Electric Bass</p>
+                                <h2 class="text-3xl font-black uppercase">电 Bass</h2>
+                                <p class="mt-3 text-sm text-gray-300">低频线预备区</p>
                             </div>
-                            <div class="border border-white/10 py-5">
-                                <p class="text-2xl font-black text-white">HSS/HH</p>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">拾音器架构</p>
+                        </button>
+                        <button onclick="renderProductFamilyBySlug('accessories')" class="group relative min-h-[280px] overflow-hidden text-left">
+                            <img src="assets/banner-accessories.png" class="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:scale-105 transition duration-700" alt="配件">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            <div class="absolute left-6 right-6 bottom-6">
+                                <p class="text-[10px] uppercase tracking-[0.34em] text-red-500 mb-3">Accessories</p>
+                                <h2 class="text-3xl font-black uppercase">配件</h2>
+                                <p class="mt-3 text-sm text-gray-300">拾音器 / 硬件 / 周边</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="bg-black/85 text-white p-8 md:p-10 shadow-2xl border border-red-950/70">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">开发方向</p>
-                        <h3 class="text-2xl md:text-4xl font-black uppercase leading-tight mb-6">从规格表，走向真正的舞台器物。</h3>
-                        <p class="text-gray-300 leading-relaxed">开发语言很清楚：烤枫木琴颈、碳纤补强、12"-16" 复合指板弧度、24 格不锈钢 Jumbo 品丝、锁定弦钮、Wilkinson-style 颤音系统，以及在舞台灯下能一眼辨识的配色。</p>
-                        <button onclick="renderConceptLine()" class="mt-8 w-full px-6 py-4 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">查看视觉样张</button>
+                        </button>
                     </div>
                 </section>
                 <section class="col-span-3">
                     <div class="flex items-end justify-between gap-4 mb-5">
                         <div>
-                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">真实上架</p>
-                            <h2 class="text-2xl md:text-4xl font-black uppercase">数据库产品</h2>
+                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">Featured</p>
+                            <h2 class="text-2xl md:text-4xl font-black uppercase">精选产品</h2>
                         </div>
+                        <button onclick="toggleProducts()" class="hidden md:block text-xs uppercase tracking-[0.25em] text-gray-300 hover:text-white">全部产品</button>
                     </div>
-                    <div id="home-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
+                    <div id="home-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
                         ${conceptCards()}
                     </div>
                 </section>
-                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-8 items-start">
-                    <div class="bg-black/85 text-white p-8 md:p-10 border border-red-950/70">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">正式产品架构</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">先分大类，再进系列。</h2>
-                        <p class="text-gray-300 leading-relaxed">PRODUCTS 的第一层应该是电吉他、电 Bass、配件。AKSHURA 与 NEON BEATS 是电吉他底下的系列，未来 Bass 与配件也可以用同样方式扩充自己的系列。</p>
+                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] border border-white/10 bg-black/80">
+                    <div class="p-7 md:p-10 border-b lg:border-b-0 lg:border-r border-white/10">
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">Akashura</p>
+                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">少一点说明，多一点击中。</h2>
+                        <p class="mt-5 text-gray-300 leading-relaxed">首页先让人记住品牌气质，再把产品入口交给数据库。故事、新闻、产品都保留，但不抢第一眼。</p>
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <button onclick="renderStoryHub()" class="px-5 py-3 bg-red-700 hover:bg-red-600 text-xs uppercase tracking-widest">Story</button>
+                            <button onclick="renderNews()" class="px-5 py-3 border border-white/30 hover:border-white text-xs uppercase tracking-widest">News</button>
+                        </div>
                     </div>
-                    <div id="home-family-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        ${categoryGuide()}
-                    </div>
-                </section>
-                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-stretch">
-                    <div id="home-story-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 order-2 lg:order-1">
+                    <div id="home-story-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
                         ${storyGuide()}
-                    </div>
-                    <div class="bg-black/85 text-white p-8 md:p-10 order-1 lg:order-2 border border-red-950/70">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">Story 架构</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">把品牌故事拆成能持续更新的章节。</h2>
-                        <p class="text-gray-300 leading-relaxed">Story 不只放一篇品牌介绍，而是分成品牌起源、设计语言、开发日志。之后你只要在数据库新增故事，首页和选单都会自动带出。</p>
-                        <button onclick="renderStoryHub()" class="mt-8 w-full px-6 py-4 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">进入 Story 总览</button>
-                    </div>
-                </section>
-                <section class="col-span-3 bg-black/75 border border-white/10 p-8 md:p-10">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div class="md:col-span-2">
-                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-4">制琴语言</p>
-                            <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">锐利琴身、克制细节，留给双手去放大声音。</h2>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-black uppercase mb-3">琴颈</h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">烤枫木、碳纤补强、SlimTaper C 手感、雾面处理、spoke-nut 调整结构。</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-black uppercase mb-3">声音设定</h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">HSS 对应现代泛用性，HH 聚焦金属声线，搭配切单线路与 0.022 uF orange drop 音色电容。</p>
-                        </div>
                     </div>
                 </section>
             `;
 
             renderHomeProducts();
-            renderHomeFamilies();
             renderHomeStories();
         }
 
@@ -290,15 +271,14 @@
                 ];
                 const products = data.items
                     .filter(item => preferredOrder.includes(item.sys.id))
-                    .sort((a, b) => preferredOrder.indexOf(a.sys.id) - preferredOrder.indexOf(b.sys.id));
+                    .sort((a, b) => preferredOrder.indexOf(a.sys.id) - preferredOrder.indexOf(b.sys.id))
+                    .slice(0, 4);
 
                 if (!products.length) return;
                 grid.innerHTML = products.map(item => {
                     const title = item.fields.title || '未命名产品';
-                    const description = item.fields.description || '';
-                    const tier = description.split('。')[0] || '已上架';
-                    const summary = description.split('。').slice(1).join('。') || description;
                     const line = title.startsWith('NEON BEATS') ? 'NEON BEATS' : 'AKSHURA';
+                    const tier = title.match(/Standard|Modern|EVO|Chao of Blead|Flagship/i)?.[0] || '已上架';
                     return `
                         <a href="detail.html?id=${item.sys.id}" class="group bg-black/85 text-white border border-white/10 shadow-xl overflow-hidden block">
                             <img src="${getImageUrl(item.fields)}" class="w-full aspect-[4/5] object-contain bg-zinc-950" alt="${title}">
@@ -306,7 +286,6 @@
                                 <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 mb-2">${line}</p>
                                 <p class="text-xs uppercase tracking-[0.24em] text-red-700 mb-3">${tier}</p>
                                 <h3 class="text-xl font-black uppercase mb-3">${title.replace(line, '').trim()}</h3>
-                                <p class="text-sm leading-relaxed text-gray-300">${summary}</p>
                             </div>
                         </a>
                     `;
@@ -622,6 +601,15 @@
             if (slug === 'electric-bass') return 'assets/banner-electric-bass.png';
             if (slug === 'accessories') return 'assets/banner-accessories.png';
             return 'assets/stage-guitars-red.jpg';
+        }
+
+        async function renderProductFamilyBySlug(slug) {
+            try {
+                const data = await client.getEntries({ content_type: 'productFamily', 'fields.slug': slug, limit: 1 });
+                if (data.items.length) renderProductFamily(data.items[0].sys.id);
+            } catch (err) {
+                console.error(err);
+            }
         }
 
         async function renderProductFamily(familyId) {
