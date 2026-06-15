@@ -45,17 +45,19 @@
     </div>
 
     <!-- 形象大图 -->
-    <div id="hero-section" class="w-full relative overflow-hidden min-h-[560px] md:min-h-0 md:aspect-[21/9] bg-black">
-        <img id="hero-image" src="assets/hero-akashura.jpg" class="absolute w-full h-full object-cover" alt="Akashura Guitars hero image">
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
+    <div id="hero-section" class="w-full relative overflow-hidden min-h-[660px] md:min-h-0 md:aspect-[16/7] bg-black">
+        <img id="hero-image" src="assets/shura-stage-warrior.jpg" class="absolute w-full h-full object-cover object-center opacity-95" alt="Akashura Guitars hero image">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
+        <div class="absolute inset-y-0 right-0 w-1/3 bg-red-950/20 mix-blend-screen"></div>
         <div class="absolute inset-0 flex items-center">
             <div class="w-full max-w-6xl mx-auto px-8 md:px-12">
-                <p class="text-[10px] md:text-xs uppercase tracking-[0.32em] md:tracking-[0.45em] text-red-500 mb-4">电吉他开发工坊</p>
-                <h2 class="max-w-3xl text-3xl md:text-7xl font-black uppercase leading-tight md:leading-none text-white">为敢把沉默击穿的演奏者而生。</h2>
-                <p class="max-w-xl mt-5 text-sm md:text-lg text-gray-200 font-light leading-relaxed">Akashura 以两条清晰开发线打造现代电吉他：NEON BEATS 承接 Strat 系血统，AKSHURA 则走向更锐利的金属琴轮廓、快速手感与舞台配色。</p>
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <button onclick="renderConceptLine()" class="w-full sm:w-auto px-6 py-3 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">查看视觉样张</button>
-                    <button onclick="renderNews()" class="w-full sm:w-auto px-6 py-3 border border-white/50 hover:border-white text-white text-xs uppercase tracking-widest">最新消息</button>
+                <p class="text-[10px] md:text-xs uppercase tracking-[0.45em] text-red-500 mb-5">AKSHURA GUITARS</p>
+                <h2 class="max-w-4xl text-5xl md:text-8xl font-black uppercase leading-none text-white">CRIMSON<br>SHURA</h2>
+                <p class="max-w-lg mt-6 text-sm md:text-base text-gray-300 font-light leading-relaxed">黑底、赤红、锋利轮廓。首页只留下最强的第一眼，再把产品交给清楚的分类结构。</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <button onclick="renderProductFamilyBySlug('electric-guitars')" class="w-full sm:w-auto px-7 py-3 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">进入产品</button>
+                    <button onclick="renderStoryHub()" class="w-full sm:w-auto px-7 py-3 border border-white/40 hover:border-white text-white text-xs uppercase tracking-widest">品牌故事</button>
                 </div>
             </div>
         </div>
@@ -129,7 +131,7 @@
         </div>
     </section>
 
-    <div id="content-view" class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 p-5 md:p-10">
+    <div id="content-view" class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 p-5 md:p-10">
     </div>
 
     <script>
@@ -189,28 +191,28 @@
 
             view.innerHTML = `
                 <section class="col-span-3">
-                    <div class="grid grid-cols-1 md:grid-cols-3 border border-white/10 bg-black/80">
-                        <button onclick="renderProductFamilyBySlug('electric-guitars')" class="group relative min-h-[280px] overflow-hidden text-left border-b md:border-b-0 md:border-r border-white/10">
-                            <img src="assets/stage-guitars-red.jpg" class="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:scale-105 transition duration-700" alt="电吉他">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-red-950/40">
+                        <button onclick="renderProductFamilyBySlug('electric-guitars')" class="group relative min-h-[340px] overflow-hidden text-left bg-black">
+                            <img src="assets/stage-guitars-red.jpg" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition duration-700" alt="电吉他">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                             <div class="absolute left-6 right-6 bottom-6">
                                 <p class="text-[10px] uppercase tracking-[0.34em] text-red-500 mb-3">Electric Guitars</p>
                                 <h2 class="text-3xl font-black uppercase">电吉他</h2>
                                 <p class="mt-3 text-sm text-gray-300">AKSHURA / NEON BEATS</p>
                             </div>
                         </button>
-                        <button onclick="renderProductFamilyBySlug('electric-bass')" class="group relative min-h-[280px] overflow-hidden text-left border-b md:border-b-0 md:border-r border-white/10">
-                            <img src="assets/banner-electric-bass.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition duration-700" alt="电 Bass">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
+                        <button onclick="renderProductFamilyBySlug('electric-bass')" class="group relative min-h-[340px] overflow-hidden text-left bg-black">
+                            <img src="assets/banner-electric-bass.png" class="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:scale-105 transition duration-700" alt="电 Bass">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"></div>
                             <div class="absolute left-6 right-6 bottom-6">
                                 <p class="text-[10px] uppercase tracking-[0.34em] text-red-500 mb-3">Electric Bass</p>
                                 <h2 class="text-3xl font-black uppercase">电 Bass</h2>
                                 <p class="mt-3 text-sm text-gray-300">低频线预备区</p>
                             </div>
                         </button>
-                        <button onclick="renderProductFamilyBySlug('accessories')" class="group relative min-h-[280px] overflow-hidden text-left">
-                            <img src="assets/banner-accessories.png" class="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:scale-105 transition duration-700" alt="配件">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <button onclick="renderProductFamilyBySlug('accessories')" class="group relative min-h-[340px] overflow-hidden text-left bg-black">
+                            <img src="assets/shura-logo-burst.jpg" class="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:scale-105 transition duration-700" alt="配件">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
                             <div class="absolute left-6 right-6 bottom-6">
                                 <p class="text-[10px] uppercase tracking-[0.34em] text-red-500 mb-3">Accessories</p>
                                 <h2 class="text-3xl font-black uppercase">配件</h2>
@@ -219,7 +221,7 @@
                         </button>
                     </div>
                 </section>
-                <section class="col-span-3">
+                <section class="col-span-3 py-4 md:py-8">
                     <div class="flex items-end justify-between gap-4 mb-5">
                         <div>
                             <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">Featured</p>
@@ -227,15 +229,15 @@
                         </div>
                         <button onclick="toggleProducts()" class="hidden md:block text-xs uppercase tracking-[0.25em] text-gray-300 hover:text-white">全部产品</button>
                     </div>
-                    <div id="home-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+                    <div id="home-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
                         ${conceptCards()}
                     </div>
                 </section>
-                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] border border-white/10 bg-black/80">
-                    <div class="p-7 md:p-10 border-b lg:border-b-0 lg:border-r border-white/10">
+                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] bg-black/80">
+                    <div class="p-7 md:p-12 border-y border-red-950/60">
                         <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">Akashura</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">少一点说明，多一点击中。</h2>
-                        <p class="mt-5 text-gray-300 leading-relaxed">首页先让人记住品牌气质，再把产品入口交给数据库。故事、新闻、产品都保留，但不抢第一眼。</p>
+                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">让第一眼先有价格感。</h2>
+                        <p class="mt-5 text-gray-300 leading-relaxed">更少的说明、更强的画面、更明确的入口。AKSHURA 要先像一个品牌，再像一个目录。</p>
                         <div class="mt-8 flex flex-wrap gap-3">
                             <button onclick="renderStoryHub()" class="px-5 py-3 bg-red-700 hover:bg-red-600 text-xs uppercase tracking-widest">Story</button>
                             <button onclick="renderNews()" class="px-5 py-3 border border-white/30 hover:border-white text-xs uppercase tracking-widest">News</button>
@@ -280,12 +282,15 @@
                     const line = title.startsWith('NEON BEATS') ? 'NEON BEATS' : 'AKSHURA';
                     const tier = title.match(/Standard|Modern|EVO|Chao of Blead|Flagship/i)?.[0] || '已上架';
                     return `
-                        <a href="detail.html?id=${item.sys.id}" class="group bg-black/85 text-white border border-white/10 shadow-xl overflow-hidden block">
-                            <img src="${getImageUrl(item.fields)}" class="w-full aspect-[4/5] object-contain bg-zinc-950" alt="${title}">
-                            <div class="p-5 md:p-6">
-                                <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 mb-2">${line}</p>
-                                <p class="text-xs uppercase tracking-[0.24em] text-red-700 mb-3">${tier}</p>
-                                <h3 class="text-xl font-black uppercase mb-3">${title.replace(line, '').trim()}</h3>
+                        <a href="detail.html?id=${item.sys.id}" class="group bg-black text-white overflow-hidden block">
+                            <div class="relative aspect-[4/5] bg-[#050505] overflow-hidden">
+                                <img src="${getImageUrl(item.fields)}" class="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-700" alt="${title}">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                                <div class="absolute left-5 right-5 bottom-5">
+                                    <p class="text-[10px] uppercase tracking-[0.28em] text-red-500 mb-2">${line}</p>
+                                    <h3 class="text-xl font-black uppercase leading-tight">${title.replace(line, '').trim()}</h3>
+                                    <p class="mt-2 text-xs uppercase tracking-[0.24em] text-gray-400">${tier}</p>
+                                </div>
                             </div>
                         </a>
                     `;
@@ -499,14 +504,12 @@
                 grid.innerHTML = data.items.map(story => {
                     const fields = story.fields;
                     return `
-                        <button onclick="renderStory('${story.sys.id}')" class="group text-left bg-black/85 text-white border border-white/10 overflow-hidden">
-                            <div class="aspect-[16/10] bg-black overflow-hidden">
-                                <img src="${getStoryImage(fields)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${fields.brandStory || '品牌故事'}">
-                            </div>
-                            <div class="p-6">
+                        <button onclick="renderStory('${story.sys.id}')" class="group relative min-h-[320px] text-left bg-black text-white overflow-hidden">
+                            <img src="${getStoryImage(fields)}" class="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:scale-105 transition duration-700" alt="${fields.brandStory || '品牌故事'}">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"></div>
+                            <div class="absolute left-6 right-6 bottom-6">
                                 <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">Story</p>
-                                <h3 class="text-2xl font-black uppercase mb-3">${fields.brandStory || '品牌故事'}</h3>
-                                <p class="text-sm leading-relaxed text-gray-300">${getStorySummary(fields)}</p>
+                                <h3 class="text-2xl font-black uppercase leading-tight">${fields.brandStory || '品牌故事'}</h3>
                             </div>
                         </button>
                     `;
