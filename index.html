@@ -232,8 +232,19 @@
                         <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">先分大类，再进系列。</h2>
                         <p class="text-gray-700 leading-relaxed">PRODUCTS 的第一层应该是电吉他、电 Bass、配件。AKSHURA 与 NEON BEATS 是电吉他底下的系列，未来 Bass 与配件也可以用同样方式扩充自己的系列。</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div id="home-family-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         ${categoryGuide()}
+                    </div>
+                </section>
+                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-stretch">
+                    <div id="home-story-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 order-2 lg:order-1">
+                        ${storyGuide()}
+                    </div>
+                    <div class="bg-[#f7f2eb] text-black p-8 md:p-10 order-1 lg:order-2">
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">Story 架构</p>
+                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">把品牌故事拆成能持续更新的章节。</h2>
+                        <p class="text-gray-700 leading-relaxed">Story 不只放一篇品牌介绍，而是分成品牌起源、设计语言、开发日志。之后你只要在数据库新增故事，首页和选单都会自动带出。</p>
+                        <button onclick="renderStoryHub()" class="mt-8 w-full px-6 py-4 bg-black hover:bg-red-800 text-white text-xs uppercase tracking-widest">进入 Story 总览</button>
                     </div>
                 </section>
                 <section class="col-span-3 bg-black/75 border border-white/10 p-8 md:p-10">
@@ -255,6 +266,8 @@
             `;
 
             renderHomeProducts();
+            renderHomeFamilies();
+            renderHomeStories();
         }
 
         async function renderHomeProducts() {
@@ -424,6 +437,100 @@
             `).join('');
         }
 
+        function storyGuide() {
+            const items = [
+                {
+                    title: '品牌起源',
+                    label: 'Origin',
+                    body: '说明 Akashura 为什么从演奏者个性、红色修罗图腾与现代舞台需求出发。'
+                },
+                {
+                    title: '设计语言',
+                    label: 'Design',
+                    body: '整理琴身轮廓、配色、图腾元素、系列差异，让视觉和产品架构互相支撑。'
+                },
+                {
+                    title: '开发日志',
+                    label: 'Build Notes',
+                    body: '记录规格选择、样琴调整、上架节奏，之后可持续变成新闻和产品说明。'
+                }
+            ];
+
+            return items.map(item => `
+                <article class="border border-white/10 bg-black/75 p-6">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">${item.label}</p>
+                    <h3 class="text-2xl font-black uppercase mb-4">${item.title}</h3>
+                    <p class="text-sm leading-relaxed text-gray-300">${item.body}</p>
+                </article>
+            `).join('');
+        }
+
+        function getStorySummary(fields) {
+            const nodes = fields.storyBox?.content || [];
+            const text = nodes
+                .filter(node => node.nodeType === 'paragraph')
+                .map(node => node.content?.map(child => child.value || '').join('') || '')
+                .join(' ')
+                .trim();
+            return text ? text.slice(0, 96) + (text.length > 96 ? '...' : '') : '这篇故事已经在数据库建立，可继续补上品牌脉络、开发过程或视觉说明。';
+        }
+
+        function getStoryImage(fields) {
+            const assetNode = fields.storyBox?.content?.find(node => node.nodeType === 'embedded-asset-block');
+            const file = assetNode?.data?.target?.fields?.file;
+            return file?.url ? 'https:' + file.url : 'assets/brand-element-uucmpy.jpg';
+        }
+
+        async function renderHomeFamilies() {
+            const grid = document.getElementById('home-family-grid');
+            if (!grid) return;
+
+            try {
+                const data = await client.getEntries({ content_type: 'productFamily', order: 'fields.order', limit: 20 });
+                if (!data.items.length) return;
+                grid.innerHTML = data.items.map(family => {
+                    const fields = family.fields;
+                    return `
+                        <button onclick="renderProductFamily('${family.sys.id}')" class="group text-left bg-black/75 border border-white/10 overflow-hidden">
+                            <div class="aspect-[16/10] bg-black overflow-hidden">
+                                <img src="${getFamilyBanner(fields)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${fields.name || '产品大类'}">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">${fields.slug || 'product family'}</p>
+                                <h3 class="text-2xl font-black uppercase mb-3">${fields.name || '产品大类'}</h3>
+                                <p class="text-sm leading-relaxed text-gray-300">${fields.description || '进入大类后再选择系列、子系列与具体产品。'}</p>
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+            } catch (err) { console.error(err); }
+        }
+
+        async function renderHomeStories() {
+            const grid = document.getElementById('home-story-grid');
+            if (!grid) return;
+
+            try {
+                const data = await client.getEntries({ content_type: 'story', include: 2, limit: 6 });
+                if (!data.items.length) return;
+                grid.innerHTML = data.items.map(story => {
+                    const fields = story.fields;
+                    return `
+                        <button onclick="renderStory('${story.sys.id}')" class="group text-left bg-white text-black overflow-hidden">
+                            <div class="aspect-[16/10] bg-black overflow-hidden">
+                                <img src="${getStoryImage(fields)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${fields.brandStory || '品牌故事'}">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-red-700 mb-3">Story</p>
+                                <h3 class="text-2xl font-black uppercase mb-3">${fields.brandStory || '品牌故事'}</h3>
+                                <p class="text-sm leading-relaxed text-gray-700">${getStorySummary(fields)}</p>
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+            } catch (err) { console.error(err); }
+        }
+
         function renderConceptLine() {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
@@ -435,7 +542,7 @@
                 <section class="col-span-3 max-w-6xl mx-auto">
                     <div class="mb-8">
                         <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-3">视觉样张</p>
-                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">两条正式主线的設計提案。</h1>
+                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">两条正式主线的设计提案。</h1>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">${conceptCards()}</div>
                     <div class="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8">
@@ -456,7 +563,7 @@
                     </div>
                     <div class="mt-8 bg-black/75 border border-white/10 p-8 md:p-10">
                         <h2 class="text-2xl md:text-4xl font-black uppercase mb-5">展示準则</h2>
-                        <p class="text-gray-300 leading-relaxed text-lg">这里只展示电吉他大类底下的 AKSHURA 与 NEON BEATS 設計方向；真正的 PRODUCTS 架构保留「大类 > 系列 > 子系列 > 产品」的扩充空間。</p>
+                        <p class="text-gray-300 leading-relaxed text-lg">这里只展示电吉他大类底下的 AKSHURA 与 NEON BEATS 设计方向；真正的 PRODUCTS 架构保留「大类 > 系列 > 子系列 > 产品」的扩充空间。</p>
                     </div>
                 </section>
             `;
@@ -486,7 +593,12 @@
                 }
                 
                 const storyData = await client.getEntries({ content_type: 'story' });
-                storyDropdown.innerHTML = storyData.items.map(s => `
+                storyDropdown.innerHTML = `
+                    <button onclick="renderStoryHub(); toggleStory();" class="block w-full text-left px-4 py-3 hover:bg-gray-100">
+                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-700">Story</span>
+                        <span class="block pt-1 text-sm font-black text-black">故事总览</span>
+                    </button>
+                ` + storyData.items.map(s => `
                     <button onclick="renderStory('${s.sys.id}'); toggleStory();" class="block w-full text-left px-4 py-2 hover:bg-gray-100 uppercase">${s.fields.brandStory || '品牌故事'}</button>
                 `).join('');
                 
@@ -634,28 +746,98 @@
             } catch (err) { console.error(err); }
         }
 
+        function renderRichText(nodes = []) {
+            return nodes.map(node => {
+                const text = (node.content || []).map(child => {
+                    if (child.nodeType === 'hyperlink') {
+                        const label = child.content?.map(c => c.value || '').join('') || child.data?.uri || '';
+                        return `<a href="${child.data?.uri || '#'}" class="text-red-400 underline underline-offset-4">${label}</a>`;
+                    }
+                    return child.value || '';
+                }).join('');
+
+                if (node.nodeType === 'heading-2') return `<h2 class="text-2xl md:text-4xl font-black uppercase mt-10 mb-4">${text}</h2>`;
+                if (node.nodeType === 'heading-3') return `<h3 class="text-xl md:text-2xl font-black uppercase mt-8 mb-3 text-red-400">${text}</h3>`;
+                if (node.nodeType === 'paragraph') return text ? `<p class="mb-5 text-base md:text-lg font-light leading-relaxed text-gray-200">${text}</p>` : '';
+                if (node.nodeType === 'unordered-list') {
+                    return `<ul class="mb-6 space-y-2 text-gray-200">${(node.content || []).map(item => `<li class="pl-4 border-l border-red-700">${item.content?.flatMap(c => c.content || []).map(c => c.value || '').join('') || ''}</li>`).join('')}</ul>`;
+                }
+                if (node.nodeType === 'embedded-asset-block') {
+                    const url = node.data?.target?.fields?.file?.url;
+                    return url ? `<img src="https:${url}" class="w-full my-8 shadow-xl object-cover max-h-[640px]" alt="Story image">` : '';
+                }
+                return '';
+            }).join('');
+        }
+
+        async function renderStoryHub() {
+            hero.classList.add('hidden');
+            totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
+            dropdown.classList.add('hidden');
+            storyDropdown.classList.add('hidden');
+
+            try {
+                const data = await client.getEntries({ content_type: 'story', include: 2, limit: 20 });
+                const storyCards = data.items.map(story => `
+                    <button onclick="renderStory('${story.sys.id}')" class="group text-left bg-white text-black overflow-hidden">
+                        <div class="aspect-[16/10] bg-black overflow-hidden">
+                            <img src="${getStoryImage(story.fields)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${story.fields.brandStory || '品牌故事'}">
+                        </div>
+                        <div class="p-6">
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-red-700 mb-3">数据库文章</p>
+                            <h3 class="text-2xl font-black uppercase mb-3">${story.fields.brandStory || '品牌故事'}</h3>
+                            <p class="text-sm leading-relaxed text-gray-700">${getStorySummary(story.fields)}</p>
+                        </div>
+                    </button>
+                `).join('');
+
+                view.innerHTML = `
+                    <section class="col-span-3 -mx-5 md:-mx-10 -mt-5 md:-mt-10 mb-4">
+                        <div class="relative min-h-[380px] md:min-h-[520px] overflow-hidden bg-black">
+                            <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover opacity-75" alt="AKSHURA Story">
+                            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-red-950/25"></div>
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="max-w-6xl mx-auto w-full px-8 md:px-12">
+                                    <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-4">Story</p>
+                                    <h1 class="text-4xl md:text-7xl font-black uppercase leading-none">品牌故事与开发脉络</h1>
+                                    <p class="max-w-2xl mt-5 text-sm md:text-lg text-gray-200 leading-relaxed">Story 区会承接品牌起源、修罗视觉、产品设计语言与开发日志。这里优先显示数据库文章，并保留未来扩充结构。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-span-3 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+                        ${storyCards || storyGuide()}
+                    </section>
+                `;
+            } catch (err) { console.error(err); }
+        }
+
         async function renderStory(storyId) {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
             symbolWall.classList.add('hidden');
+            dropdown.classList.add('hidden');
+            storyDropdown.classList.add('hidden');
             const data = await client.getEntry(storyId);
-            
-            // 简易 Rich Text 解析器
-            const content = data.fields.storyBox.content.map(node => {
-                if (node.nodeType === 'paragraph') {
-                    return `<p class="mb-4 text-lg font-light leading-relaxed">${node.content.map(c => c.value).join('')}</p>`;
-                }
-                if (node.nodeType === 'embedded-asset-block') {
-                    const url = 'https:' + node.data.target.fields.file.url;
-                    return `<img src="${url}" class="w-full my-8 rounded-lg shadow-xl">`;
-                }
-                return '';
-            }).join('');
+            const fields = data.fields;
+            const content = renderRichText(fields.storyBox?.content || []);
 
-            view.innerHTML = `<div class="col-span-3 bg-black/60 p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-sm max-w-4xl mx-auto">
-                <h1 class="text-2xl md:text-3xl font-bold mb-10 uppercase tracking-widest text-red-600 border-b border-red-600/30 pb-6">${data.fields.brandStory}</h1>
-                <div class="space-y-6">${content}</div>
-            </div>`;
+            view.innerHTML = `
+                <article class="col-span-3 max-w-5xl mx-auto bg-black/75 border border-white/10 shadow-2xl backdrop-blur-sm overflow-hidden">
+                    <div class="relative min-h-[320px] md:min-h-[460px] bg-black">
+                        <img src="${getStoryImage(fields)}" class="absolute inset-0 w-full h-full object-cover opacity-70" alt="${fields.brandStory || '品牌故事'}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute left-6 right-6 bottom-6 md:left-10 md:right-10 md:bottom-10">
+                            <button onclick="renderStoryHub()" class="mb-5 text-xs uppercase tracking-[0.28em] text-red-400 hover:text-white">Story 总览</button>
+                            <h1 class="text-3xl md:text-6xl font-black uppercase leading-tight">${fields.brandStory || '品牌故事'}</h1>
+                        </div>
+                    </div>
+                    <div class="p-7 md:p-12">
+                        ${content || '<p class="text-gray-300 leading-relaxed">这篇故事已经建立，内容可以继续从 Contentful 补齐。</p>'}
+                    </div>
+                </article>
+            `;
         }
 
         async function renderNews() {
@@ -713,7 +895,9 @@
         const newsParam = urlParams.get('news');
         const familyParam = urlParams.get('family');
         const catParam = urlParams.get('cat');
-        if (storyParam) {
+        if (storyParam === 'hub') {
+            renderStoryHub();
+        } else if (storyParam) {
             renderStory(storyParam);
         } else if (newsParam) {
             renderNews();

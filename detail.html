@@ -34,7 +34,7 @@
         </div>
     </nav>
 
-    <!-- 中间品牌区块：同步 index.html 大比例設計 -->
+    <!-- 中间品牌区块：同步 index.html 大比例设计 -->
     <div id="brand-header" class="flex flex-col items-center justify-center py-1.5 bg-white shadow-sm border-b border-gray-100 px-4">
         <div class="w-[85%] md:w-[45%] max-w-[650px] flex flex-col items-center">
             <div id="brand-logo-container" class="w-full flex justify-center mb-0">
@@ -78,7 +78,12 @@
                 if (!dropdown.innerHTML) dropdown.innerHTML = '<p class="px-4 py-2 text-xs text-gray-500">数据库尚未建立产品架构</p>';
                 
                 const storyData = await client.getEntries({ content_type: 'story' });
-                storyDropdown.innerHTML = storyData.items.map(s => `
+                storyDropdown.innerHTML = `
+                    <a href="index.html?story=hub" class="block px-4 py-3 hover:bg-gray-100">
+                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-700">Story</span>
+                        <span class="block pt-1 text-sm font-black text-black">故事总览</span>
+                    </a>
+                ` + storyData.items.map(s => `
                     <a href="index.html?story=${s.sys.id}" class="block px-4 py-2 hover:bg-gray-100 uppercase text-sm">${s.fields.brandStory || '品牌故事'}</a>
                 `).join('');
                 
