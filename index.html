@@ -673,11 +673,14 @@
         const urlParams = new URLSearchParams(window.location.search);
         const storyParam = urlParams.get('story');
         const newsParam = urlParams.get('news');
+        const familyParam = urlParams.get('family');
         const catParam = urlParams.get('cat');
         if (storyParam) {
             renderStory(storyParam);
         } else if (newsParam) {
             renderNews();
+        } else if (familyParam) {
+            renderProductFamily(familyParam);
         } else if (catParam) {
             renderSeries(catParam);
         } else {

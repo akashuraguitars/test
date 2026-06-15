@@ -68,10 +68,14 @@
 
         async function syncNav() {
             try {
-                const catData = await client.getEntries({ content_type: 'category' });
-                dropdown.innerHTML = catData.items.map(cat => `
-                    <a href="index.html?cat=${cat.sys.id}" class="block px-4 py-2 hover:bg-gray-100 uppercase text-sm">${cat.fields.name || '未命名类別'}</a>
+                const familyData = await client.getEntries({ content_type: 'productFamily', order: 'fields.order' });
+                dropdown.innerHTML = familyData.items.map(family => `
+                    <a href="index.html?family=${family.sys.id}" class="block px-4 py-3 hover:bg-gray-100">
+                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-700">${family.fields.slug || family.fields.name}</span>
+                        <span class="block pt-1 text-sm font-black text-black">${family.fields.name || '产品大类'}</span>
+                    </a>
                 `).join('');
+                if (!dropdown.innerHTML) dropdown.innerHTML = '<p class="px-4 py-2 text-xs text-gray-500">数据库尚未建立产品架构</p>';
                 
                 const storyData = await client.getEntries({ content_type: 'story' });
                 storyDropdown.innerHTML = storyData.items.map(s => `
