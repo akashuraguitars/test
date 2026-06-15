@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+﻿﻿<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 </head>
 <body class="bg-black text-white bg-[url('bgrond.jpg')] bg-fixed bg-cover bg-center">
 
-    <!-- 導航列 -->
+    <!-- 导航列 -->
     <nav class="bg-black text-white p-2 md:p-5 sticky top-0 z-50">
         <div class="w-full px-1 flex flex-wrap justify-center items-center gap-x-2 md:gap-x-8 text-[9px] md:text-sm uppercase font-light">
             <ul class="flex items-center text-[9px] md:text-sm uppercase font-light" style="gap: clamp(0.25rem, 3vw, 2rem);">
@@ -33,33 +33,70 @@
         </div>
     </nav>
 
-    <!-- 中間品牌區塊 -->
+    <!-- 中间品牌区块 -->
     <div id="brand-header" class="flex flex-col items-center justify-center py-1.5 bg-white shadow-sm border-b border-gray-100 px-4">
         <div class="w-[85%] md:w-[45%] max-w-[650px] flex flex-col items-center">
             <div id="brand-logo-container" class="w-full flex justify-center mb-0">
                 <img id="brand-image" src="logo.png" alt="Akashura Guitars" class="w-full h-auto object-contain">
             </div>
             <h1 id="brand-title" class="text-4xl md:text-5xl font-extrabold tracking-widest text-black uppercase hidden">Akashura Guitars</h1>
-            <p id="brand-slogan" class="w-full text-center text-[9px] md:text-xs text-gray-500 font-light uppercase mt-1 tracking-[0.26em] md:tracking-[0.43em] whitespace-nowrap pl-[0.26em] md:pl-[0.43em]">打造屬於演奏者的個性。</p>
+            <p id="brand-slogan" class="w-full text-center text-[9px] md:text-xs text-gray-500 font-light uppercase mt-1 tracking-[0.26em] md:tracking-[0.43em] whitespace-nowrap pl-[0.26em] md:pl-[0.43em]">打造属于演奏者的个性。</p>
         </div>
     </div>
 
-    <!-- 形象大圖 -->
+    <!-- 形象大图 -->
     <div id="hero-section" class="w-full relative overflow-hidden min-h-[560px] md:min-h-0 md:aspect-[21/9] bg-black">
         <img id="hero-image" src="assets/hero-akashura.jpg" class="absolute w-full h-full object-cover" alt="Akashura Guitars hero image">
         <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
         <div class="absolute inset-0 flex items-center">
             <div class="w-full max-w-6xl mx-auto px-8 md:px-12">
-                <p class="text-[10px] md:text-xs uppercase tracking-[0.32em] md:tracking-[0.45em] text-red-500 mb-4">電吉他開發工坊</p>
-                <h2 class="max-w-3xl text-3xl md:text-7xl font-black uppercase leading-tight md:leading-none text-white">為敢把沉默擊穿的演奏者而生。</h2>
-                <p class="max-w-xl mt-5 text-sm md:text-lg text-gray-200 font-light leading-relaxed">Akashura 以兩條清晰開發線打造現代電吉他：NEON BEATS 承接 Strat 系血統，AKSHURA 則走向更銳利的金屬琴輪廓、快速手感與舞台配色。</p>
+                <p class="text-[10px] md:text-xs uppercase tracking-[0.32em] md:tracking-[0.45em] text-red-500 mb-4">电吉他开发工坊</p>
+                <h2 class="max-w-3xl text-3xl md:text-7xl font-black uppercase leading-tight md:leading-none text-white">为敢把沉默击穿的演奏者而生。</h2>
+                <p class="max-w-xl mt-5 text-sm md:text-lg text-gray-200 font-light leading-relaxed">Akashura 以两条清晰开发线打造现代电吉他：NEON BEATS 承接 Strat 系血统，AKSHURA 则走向更锐利的金属琴轮廓、快速手感与舞台配色。</p>
                 <div class="mt-7 flex flex-wrap gap-3">
-                    <button onclick="renderConceptLine()" class="w-full sm:w-auto px-6 py-3 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">查看開發型號</button>
+                    <button onclick="renderConceptLine()" class="w-full sm:w-auto px-6 py-3 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">查看视觉样张</button>
                     <button onclick="renderNews()" class="w-full sm:w-auto px-6 py-3 border border-white/50 hover:border-white text-white text-xs uppercase tracking-widest">最新消息</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <section id="totem-section" class="bg-black border-y border-red-950/70">
+        <div class="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-6 lg:gap-10 items-stretch">
+                <div class="relative min-h-[500px] md:min-h-[650px] overflow-hidden bg-[#070303] border border-red-950/60">
+                    <img id="totem-image" src="assets/akshura-crimson.jpg" class="absolute inset-0 w-full h-full object-contain p-4 md:p-8" alt="AKSHURA 赤红修罗">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(120,0,0,0.20)_42%,rgba(0,0,0,0.92)_100%)]"></div>
+                    <div class="absolute left-0 top-0 h-full w-1.5 bg-red-700"></div>
+                    <div class="absolute left-5 bottom-5 right-5 md:left-8 md:bottom-8 md:right-8">
+                        <p class="text-[10px] uppercase tracking-[0.35em] text-red-400 mb-2">Crimson Shura</p>
+                        <h2 class="text-3xl md:text-6xl font-black uppercase leading-none">赤红修罗</h2>
+                    </div>
+                </div>
+                <div class="bg-[#f7f2eb] text-black p-7 md:p-10 flex flex-col justify-between">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-800 mb-5">AKSHURA 精神图腾</p>
+                        <h3 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-6">像刀刃一样站上舞台。</h3>
+                        <div class="space-y-4 text-gray-800 leading-relaxed text-base md:text-lg">
+                            <p>赤红修罗不是温和的展示款，它要先把视线抓住，再让人看见琴身弧线、尖角琴头与金色五金带出的压迫感。</p>
+                            <p>这个区块会成为首页的品牌图腾：上方主视觉负责气势，这里负责把 AKSHURA 的凶悍、速度与舞台存在感讲清楚。</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 mt-8">
+                        <div class="bg-black h-32 md:h-40 overflow-hidden border border-black">
+                            <img src="assets/akshura-inferno.jpg" class="w-full h-full object-cover" alt="AKSHURA 炎刃">
+                        </div>
+                        <div class="bg-black h-32 md:h-40 overflow-hidden border border-black">
+                            <img src="assets/akshura-violet.jpg" class="w-full h-full object-cover" alt="AKSHURA 紫焰">
+                        </div>
+                        <div class="bg-black h-32 md:h-40 overflow-hidden border border-black">
+                            <img src="assets/akshura-obsidian.jpg" class="w-full h-full object-cover" alt="AKSHURA 黑曜">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div id="content-view" class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 p-5 md:p-10">
     </div>
@@ -75,8 +112,26 @@
         const dropdown = document.getElementById('dropdown-menu');
         const storyDropdown = document.getElementById('story-dropdown');
         const hero = document.getElementById('hero-section');
+        const totem = document.getElementById('totem-section');
         const brandImage = document.getElementById('brand-image');
         const brandSlogan = document.getElementById('brand-slogan');
+        const fallbackProductFamilies = [
+            {
+                name: '电吉他',
+                label: 'Electric Guitars',
+                order: 10
+            },
+            {
+                name: '电 Bass',
+                label: 'Electric Bass',
+                order: 20
+            },
+            {
+                name: '配件',
+                label: 'Accessories',
+                order: 30
+            }
+        ];
 
         function toggleProducts() { dropdown.classList.toggle('hidden'); storyDropdown.classList.add('hidden'); }
         function toggleStory() { storyDropdown.classList.toggle('hidden'); dropdown.classList.add('hidden'); }
@@ -95,19 +150,20 @@
 
         function renderHome() {
             hero.classList.remove('hidden');
+            totem.classList.remove('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
             view.innerHTML = `
                 <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-stretch">
                     <div class="bg-black/75 border border-white/10 p-8 md:p-10 shadow-2xl backdrop-blur-sm">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">品牌脈動</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-6">個性不是選配，它就是這把琴的本體。</h2>
-                        <p class="text-gray-300 leading-relaxed text-base md:text-lg">Akashura Guitars 目前聚焦兩條開發方向：NEON BEATS 提供現代 Strat-style 的泛用性，AKSHURA 則鎖定更具攻擊性的金屬聲線。</p>
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">品牌脉动</p>
+                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-6">个性不是选配，它就是这把琴的本体。</h2>
+                        <p class="text-gray-300 leading-relaxed text-base md:text-lg">Akashura Guitars 目前聚焦两条开发方向：NEON BEATS 提供现代 Strat-style 的泛用性，AKSHURA 则锁定更具攻击性的金属声线。</p>
                         <div class="grid grid-cols-3 gap-4 mt-8 text-center">
                             <div class="border border-white/10 py-5">
                                 <p class="text-2xl font-black text-white">25.5</p>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">有效弦長平台</p>
+                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">有效弦长平台</p>
                             </div>
                             <div class="border border-white/10 py-5">
                                 <p class="text-2xl font-black text-white">24</p>
@@ -115,22 +171,22 @@
                             </div>
                             <div class="border border-white/10 py-5">
                                 <p class="text-2xl font-black text-white">HSS/HH</p>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">拾音器架構</p>
+                                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">拾音器架构</p>
                             </div>
                         </div>
                     </div>
                     <div class="bg-white text-black p-8 md:p-10 shadow-2xl">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">開發方向</p>
-                        <h3 class="text-2xl md:text-4xl font-black uppercase leading-tight mb-6">從規格表，走向真正的舞台器物。</h3>
-                        <p class="text-gray-700 leading-relaxed">開發語言很清楚：烤楓木琴頸、碳纖補強、12"-16" 複合指板弧度、24 格不鏽鋼 Jumbo 品絲、鎖定弦鈕、Wilkinson-style 顫音系統，以及在舞台燈下能一眼辨識的配色。</p>
-                        <button onclick="renderConceptLine()" class="mt-8 w-full px-6 py-4 bg-black hover:bg-red-800 text-white text-xs uppercase tracking-widest">打開開發型號</button>
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">开发方向</p>
+                        <h3 class="text-2xl md:text-4xl font-black uppercase leading-tight mb-6">從规格表，走向真正的舞台器物。</h3>
+                        <p class="text-gray-700 leading-relaxed">开发语言很清楚：烤枫木琴颈、碳纤补强、12"-16" 复合指板弧度、24 格不锈钢 Jumbo 品丝、锁定弦钮、Wilkinson-style 颤音系统，以及在舞台灯下能一眼辨识的配色。</p>
+                        <button onclick="renderConceptLine()" class="mt-8 w-full px-6 py-4 bg-black hover:bg-red-800 text-white text-xs uppercase tracking-widest">查看视觉样张</button>
                     </div>
                 </section>
                 <section class="col-span-3">
                     <div class="flex items-end justify-between gap-4 mb-5">
                         <div>
-                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">上架展示</p>
-                            <h2 class="text-2xl md:text-4xl font-black uppercase">十款開發型號</h2>
+                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">設計样张</p>
+                            <h2 class="text-2xl md:text-4xl font-black uppercase">十款视觉提案</h2>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
@@ -139,9 +195,9 @@
                 </section>
                 <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-8 items-start">
                     <div class="bg-white text-black p-8 md:p-10">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">系列地圖</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">不是每位演奏者都需要同一把武器。</h2>
-                        <p class="text-gray-700 leading-relaxed">產品架構以兩條線展開：NEON BEATS 的 Standard / Modern 服務需要泛用性的演奏者；AKSHURA 的 Standard / EVO / 旗艦金屬琴，則面向更重、更銳利的聲音。</p>
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">正式产品架构</p>
+                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">先分大类，再进系列。</h2>
+                        <p class="text-gray-700 leading-relaxed">PRODUCTS 的第一层应该是电吉他、电 Bass、配件。AKSHURA 与 NEON BEATS 是电吉他底下的系列，未来 Bass 与配件也可以用同样方式扩充自己的系列。</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         ${categoryGuide()}
@@ -150,16 +206,16 @@
                 <section class="col-span-3 bg-black/75 border border-white/10 p-8 md:p-10">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                         <div class="md:col-span-2">
-                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-4">製琴語言</p>
-                            <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">銳利琴身、克制細節，留給雙手去放大聲音。</h2>
+                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-4">制琴语言</p>
+                            <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">锐利琴身、克制细節，留給双手去放大声音。</h2>
                         </div>
                         <div>
-                            <h3 class="text-lg font-black uppercase mb-3">琴頸</h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">烤楓木、碳纖補強、SlimTaper C 手感、霧面處理、spoke-nut 調整結構。</p>
+                            <h3 class="text-lg font-black uppercase mb-3">琴颈</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">烤枫木、碳纤补强、SlimTaper C 手感、雾面处理、spoke-nut 调整结构。</p>
                         </div>
                         <div>
-                            <h3 class="text-lg font-black uppercase mb-3">聲音設定</h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">HSS 對應現代泛用性，HH 聚焦金屬聲線，搭配切單線路與 0.022 uF orange drop 音色電容。</p>
+                            <h3 class="text-lg font-black uppercase mb-3">声音設定</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">HSS 对应现代泛用性，HH 聚焦金属声线，搭配切单线路与 0.022 uF orange drop 音色电容。</p>
                         </div>
                     </div>
                 </section>
@@ -170,82 +226,82 @@
             const concepts = [
                 {
                     line: 'NEON BEATS',
-                    name: '緋紅 Standard',
+                    name: '绯红 Standard',
                     tier: 'Standard / 1999',
-                    tag: '紅色 HSS 現代 Strat 平台',
-                    specs: '赤楊木琴身 / 烤楓木加碳纖補強琴頸 / 24 格不鏽鋼 Jumbo / HSS 陶瓷 + Alnico 5',
+                    tag: 'HSS 泛用平台，保留 Strat 系的速度与亮度',
+                    specs: 'Alder 琴身 / 烤枫木加碳纤补强琴颈 / 科技乌木指板 / 25.5 吋弦长 / 24 格不锈钢 Jumbo / 后段陶瓷双线圈 + 中前段 Alnico 5',
                     image: 'assets/neon-crimson.jpg'
                 },
                 {
                     line: 'NEON BEATS',
-                    name: '靛藍 Modern',
+                    name: '靛蓝 Modern',
                     tier: 'Modern / 3999',
-                    tag: '藍色舞台款，搭配金色五金',
-                    specs: '赤楊木琴身 / 貼皮面板 / 烤楓木指板 / HH 可切單線路 / 金色五金',
+                    tag: '贴皮面板与 HH 可切单，舞台辨识度更高',
+                    specs: 'Alder 琴身 + 贴皮面板 / 烤枫木加碳纤补强琴颈 / 烤枫木指板 / 12-16 吋复合弧度 / HH 四芯可切单 / 500k 音量与音色控制',
                     image: 'assets/neon-indigo.jpg'
                 },
                 {
                     line: 'NEON BEATS',
                     name: '象牙 Standard',
                     tier: 'Standard / 1999',
-                    tag: '淺色 HSS 泛用工作琴',
-                    specs: 'S-style 琴身 / HSS 拾音器配置 / 金色顫音琴橋 / 25.5 有效弦長 / 24 格',
+                    tag: '乾淨外觀的工作琴，重点放在稳定与反应',
+                    specs: 'Bolt-On 结构 / SlimTaper C-shape / 第 1 格 19.7mm 到第 12 格 21.2mm / TUQS 上枕 / Wilkinson VS100N 规格桥系 / D Addario EXL120',
                     image: 'assets/neon-ivory.jpg'
                 },
                 {
                     line: 'NEON BEATS',
                     name: '薄荷 Modern',
-                    tier: 'Modern 配色研究',
-                    tag: '明亮色系，HSS 控制配置',
-                    specs: 'S-style 琴身 / HSS 拾音器 / 金色五金 / 顫音琴橋 / 舞台辨識度高的淺色塗裝',
+                    tier: 'Modern / 3999',
+                    tag: 'Modern 规格的亮色提案，適合流行与融合樂手',
+                    specs: '贴皮面板 / 烤枫木指板 / 24 格不锈钢 Jumbo / HH 陶瓷 + Alnico 5 可切单 / 0.022uF orange drop 电容 / 金色五金',
                     image: 'assets/neon-mint.jpg'
                 },
                 {
                     line: 'NEON BEATS',
-                    name: '洋紅 Modern',
-                    tier: 'Modern 配色研究',
-                    tag: '高對比主奏取向',
-                    specs: 'S-style 琴身 / 現代顫音系統 / 金色五金 / 快速烤楓木琴頸手感 / 24 格配置',
+                    name: '洋红 Modern',
+                    tier: 'Modern / 3999',
+                    tag: '高对比主奏配色，保留 Modern 的双线圈切换弹性',
+                    specs: 'Alder 琴身 + 贴皮面板 / 25.5 吋弦长 / 12-16 吋混合弧度 / Gotoh Magnum Lock-Trad 规格弦钮 / Wilkinson VS100N 规格颤音桥',
                     image: 'assets/neon-magenta.jpg'
                 },
                 {
                     line: 'AKSHURA',
-                    name: '緋紅 EVO',
+                    name: '绯红 EVO',
                     tier: 'EVO / 2999',
-                    tag: '攻擊性更強的金屬線',
-                    specs: '梣木琴身 / UV 虎紋面板 / 25.5 有效弦長 / 陶瓷橋段聲線 / HH 可切單',
+                    tag: 'Ash 琴身与 UV 虎纹面板，把攻击性推到前台',
+                    specs: 'Ash 琴身 / UV Print 虎纹面板 / 烤枫木加碳纤补强琴颈 / 烤枫木指板 / HH 四芯可切单 / 后段陶瓷 12-14K + 前段 Alnico 5',
                     image: 'assets/akshura-crimson.jpg'
                 },
                 {
                     line: 'AKSHURA',
-                    name: '稜鏡 Standard',
+                    name: '棱镜 Standard',
                     tier: 'Standard / 1999',
-                    tag: '藍紫色銳利金屬琴身',
-                    specs: '赤楊木琴身 / HH 配置 / 可切單控制 / 24 格不鏽鋼 Jumbo / 金色五金',
+                    tag: '入門金属线，轮廓锐利但规格不妥協',
+                    specs: 'Alder 琴身 / Bolt-On 结构 / 25.5 吋弦长 / 科技乌木指板 / 24 格不锈钢 Jumbo / HH 配置 / 拉起可切单 / 金色五金',
                     image: 'assets/akshura-prism.jpg'
                 },
                 {
                     line: 'AKSHURA',
-                    name: '紫焰旗艦',
-                    tier: '旗艦 / 5999',
-                    tag: '高階紋理面板金屬聲線',
-                    specs: '桃花心木琴身 / AAA 絮狀楓木面板 / Panga Panga + 硬楓木琴頸 / Duncan SH2 + RTM',
+                    name: '紫焰 Chao of Blead',
+                    tier: 'Chao of Blead / 5999',
+                    tag: '高阶金属声线，從木料到拾音器都拉滿',
+                    specs: '桃花心木琴身 / AAA 絮狀枫木 5-6mm 面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan SH2 + RTM / 24 格不锈钢 Jumbo',
                     image: 'assets/akshura-violet.jpg'
                 },
                 {
                     line: 'AKSHURA',
                     name: '炎刃 Standard',
-                    tier: 'Standard 配色研究',
-                    tag: '熱烈紅色刀鋒輪廓',
-                    specs: 'HH 拾音器 / 顫音琴橋 / Slim C 琴頸 / 複合指板弧度 / 侵略性舞台配色',
+                    tier: 'Standard / 1999',
+                    tag: '红色刀锋外觀，搭配標準 HH 金属配置',
+                    specs: 'Alder 琴身 / SlimTaper C-shape / 19-20mm 琴颈厚度 / 43mm TUQS 上枕 / 12-16 吋复合弧度 / 1 音量 1 音色，拉起可切单',
                     image: 'assets/akshura-inferno.jpg'
                 },
                 {
                     line: 'AKSHURA',
-                    name: '黑曜旗艦',
-                    tier: '旗艦配色研究',
-                    tag: '黑金高階金屬配置',
-                    specs: '深色紋理面板 / 金色五金 / HH 聲線 / 高階琴頸結構 / 舞台對比強烈',
+                    name: '黑曜 Chao of Blead',
+                    tier: 'Chao of Blead / 5999',
+                    tag: '黑金高阶款，把低沉压迫感与華麗面板收在一起',
+                    specs: '桃花心木琴身 / AAA 絮狀枫木面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan NECK SH2 + BRIDGE RTM / Gloss 琴身、Matte 琴颈',
                     image: 'assets/akshura-obsidian.jpg'
                 }
             ];
@@ -269,12 +325,12 @@
                 {
                     title: 'NEON BEATS',
                     subtitle: 'Standard / Modern',
-                    body: '現代化 S-style 產品線：25.5 有效弦長、24 格不鏽鋼 Jumbo、複合指板弧度、HSS 或 HH 線路，以及快速的烤楓木琴頸手感。'
+                    body: '电吉他大类底下的现代 S-style 系列。Standard 以 HSS 泛用配置为核心；Modern 加入贴皮面板、烤枫木指板与 HH 可切单线路，价格级距对应 1999 / 3999。'
                 },
                 {
                     title: 'AKSHURA',
-                    subtitle: 'Standard / EVO / 旗艦',
-                    body: '金屬取向琴身語言：HH 聲線、可切單控制、攻擊性塗裝，以及搭載 Duncan 配置的高階旗艦層級。'
+                    subtitle: 'Standard / EVO / Chao of Blead',
+                    body: '电吉他大类底下的金属系列。Standard 建立 HH 刀锋轮廓；EVO 升级 Ash 琴身与 UV 虎纹面板；Chao of Blead 进入桃花心木、AAA 枫木面板与 Duncan SH2 / RTM 的高阶配置。'
                 },
             ];
 
@@ -289,35 +345,36 @@
 
         function renderConceptLine() {
             hero.classList.add('hidden');
+            totem.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
             view.innerHTML = `
                 <section class="col-span-3 max-w-6xl mx-auto">
                     <div class="mb-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-3">Akashura 開發線</p>
-                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">從 NEON BEATS 到 AKSHURA 刀鋒。</h1>
+                        <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-3">视觉样张</p>
+                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">两条正式主线的設計提案。</h1>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">${conceptCards()}</div>
                     <div class="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8">
                         <img src="assets/metal-red.jpg" class="w-full bg-black shadow-2xl object-contain max-h-[620px]" alt="AKSHURA metal guitar">
                         <div class="bg-white text-black p-8 md:p-10">
-                            <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">類別說明</p>
+                            <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">数据库分类逻辑</p>
                             <div class="space-y-6">
                                 <div>
                                     <h3 class="text-xl font-black uppercase">NEON BEATS</h3>
-                                    <p class="text-gray-700 leading-relaxed">泛用的 Strat-style 基礎：赤楊木琴身、快速烤楓木琴頸、24 格不鏽鋼品絲、顫音系統，以及 HSS / HH 的線路選擇。</p>
+                                    <p class="text-gray-700 leading-relaxed">泛用的 Strat-style 基础：赤杨木琴身、快速烤枫木琴颈、24 格不锈钢品丝、颤音系统，以及 HSS / HH 的线路选择。</p>
                                 </div>
                                 <div>
                                     <h3 class="text-xl font-black uppercase">AKSHURA</h3>
-                                    <p class="text-gray-700 leading-relaxed">金屬琴分支：更大膽的琴身語言、HH 可切單線路、EVO 塗裝研究，以及採用高階木料與 Duncan 拾音器的旗艦層級。</p>
+                                    <p class="text-gray-700 leading-relaxed">金属琴分支：更大胆的琴身语言、HH 可切单线路、EVO 涂装研究，以及采用高阶木料与 Duncan 拾音器的旗舰层级。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-8 bg-black/75 border border-white/10 p-8 md:p-10">
-                        <h2 class="text-2xl md:text-4xl font-black uppercase mb-5">開發準則</h2>
-                        <p class="text-gray-300 leading-relaxed text-lg">每把琴在裝飾之前，都必須先有清楚角色：NEON BEATS 負責 S-style 性能線，AKSHURA 負責更銳利的金屬線。</p>
+                        <h2 class="text-2xl md:text-4xl font-black uppercase mb-5">展示準则</h2>
+                        <p class="text-gray-300 leading-relaxed text-lg">这里只展示电吉他大类底下的 AKSHURA 与 NEON BEATS 設計方向；真正的 PRODUCTS 架构保留「大类 > 系列 > 子系列 > 产品」的扩充空間。</p>
                     </div>
                 </section>
             `;
@@ -325,10 +382,26 @@
 
         async function initNav() {
             try {
-                const catData = await client.getEntries({ content_type: 'category' });
-                dropdown.innerHTML = catData.items.map(cat => `
-                    <button onclick="renderSeries('${cat.sys.id}'); toggleProducts();" class="block w-full text-left px-4 py-2 hover:bg-gray-100 uppercase">${cat.fields.name || '未命名類別'}</button>
+                const familyData = await client.getEntries({ content_type: 'productFamily', order: 'fields.order' });
+
+                const families = familyData.items.length
+                    ? familyData.items.map(item => ({
+                        id: item.sys.id,
+                        name: item.fields.name,
+                        label: item.fields.slug || item.fields.name,
+                        order: item.fields.order || 999
+                    })).sort((a, b) => a.order - b.order)
+                    : fallbackProductFamilies;
+
+                dropdown.innerHTML = families.map(family => `
+                    <button onclick="renderProductFamily('${family.id}'); toggleProducts();" class="block w-full text-left px-4 py-3 hover:bg-gray-100">
+                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-700">${family.label}</span>
+                        <span class="block pt-1 text-sm font-black text-black">${family.name}</span>
+                    </button>
                 `).join('');
+                if (!dropdown.innerHTML) {
+                    dropdown.innerHTML = '<p class="px-4 py-2 text-xs text-gray-500">数据库尚未建立产品架构</p>';
+                }
                 
                 const storyData = await client.getEntries({ content_type: 'story' });
                 storyDropdown.innerHTML = storyData.items.map(s => `
@@ -346,17 +419,101 @@
             } catch (err) { console.error(err); }
         }
 
+        function getFamilyBanner(fields) {
+            const slug = fields.slug || '';
+            if (slug === 'electric-bass') return 'assets/banner-electric-bass.png';
+            if (slug === 'accessories') return 'assets/banner-accessories.png';
+            return 'assets/banner-electric-guitars.png';
+        }
+
+        async function renderProductFamily(familyId) {
+            hero.classList.add('hidden');
+            totem.classList.add('hidden');
+            dropdown.classList.add('hidden');
+            storyDropdown.classList.add('hidden');
+
+            try {
+                const family = await client.getEntry(familyId);
+                const [data, seriesData] = await Promise.all([
+                    client.getEntries({ content_type: 'category', include: 1, limit: 100 }),
+                    client.getEntries({ content_type: 'series', include: 1, limit: 100 })
+                ]);
+                const categories = data.items
+                    .filter(cat => cat.fields.productFamily?.sys?.id === familyId)
+                    .sort((a, b) => (a.fields.name || '').localeCompare(b.fields.name || ''));
+                const banner = getFamilyBanner(family.fields);
+                const categoryPreview = (cat) => {
+                    const linkedSeries = seriesData.items.find(item => item.fields.category?.sys?.id === cat.sys.id);
+                    return linkedSeries ? getImageUrl(linkedSeries.fields) : getFamilyBanner(family.fields);
+                };
+
+                view.innerHTML = `
+                    <section class="col-span-3 -mx-5 md:-mx-10 -mt-5 md:-mt-10 mb-4">
+                        <div class="relative min-h-[360px] md:min-h-[460px] overflow-hidden bg-black">
+                            <img src="${banner}" class="absolute inset-0 w-full h-full object-cover" alt="${family.fields.name || '产品大类'} banner">
+                            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="max-w-6xl mx-auto w-full px-8 md:px-12">
+                                    <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-4">PRODUCT FAMILY</p>
+                                    <h1 class="text-4xl md:text-7xl font-black uppercase leading-none">${family.fields.name || '产品大类'}</h1>
+                                    <p class="max-w-2xl mt-5 text-sm md:text-lg text-gray-200 leading-relaxed">${family.fields.description || '选择一个系列，进入下一层产品结构。'}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-span-3">
+                        <div class="flex items-end justify-between gap-4 mb-5">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">系列</p>
+                                <h2 class="text-2xl md:text-4xl font-black uppercase">选择系列</h2>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                            ${categories.map(cat => `
+                                <button onclick="renderSeries('${cat.sys.id}')" class="group text-left bg-white text-black overflow-hidden shadow-xl">
+                                    <div class="aspect-[16/10] bg-zinc-950 overflow-hidden">
+                                        <img src="${categoryPreview(cat)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${cat.fields.name || '系列'}">
+                                    </div>
+                                    <div class="p-6">
+                                        <p class="text-[10px] uppercase tracking-[0.25em] text-red-700 mb-3">${family.fields.name || '产品大类'}</p>
+                                        <h3 class="text-2xl font-black uppercase">${cat.fields.name || '未命名系列'}</h3>
+                                    </div>
+                                </button>
+                            `).join('') || '<p class="col-span-3 text-center uppercase">这个大类的系列规划中。</p>'}
+                        </div>
+                    </section>
+                `;
+            } catch (err) { console.error(err); }
+        }
+
         async function renderSeries(catId) {
             hero.classList.add('hidden');
+            totem.classList.add('hidden');
             try {
+                const category = await client.getEntry(catId);
+                let familyName = '产品大类';
+                if (category.fields.productFamily?.sys?.id) {
+                    try {
+                        const family = await client.getEntry(category.fields.productFamily.sys.id);
+                        familyName = family.fields.name || familyName;
+                    } catch (familyErr) {
+                        console.warn(familyErr);
+                    }
+                }
                 const data = await client.getEntries({ content_type: 'series' });
                 const filtered = data.items.filter(s => s.fields.category?.sys?.id === catId);
-                view.innerHTML = filtered.map(s => `
-                    <div onclick="renderSubSeries('${s.sys.id}')" class="bg-white p-6 shadow-lg cursor-pointer hover:scale-105 transition rounded-xl text-center">
-                        <img src="${getImageUrl(s.fields)}" class="w-full h-48 object-cover mb-4 rounded-lg">
-                        <h2 class="text-xl font-bold uppercase text-red-600">${s.fields.series || '未命名系列'}</h2>
-                    </div>
-                `).join('');
+                view.innerHTML = `
+                    <section class="col-span-3 mb-2">
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-3">${familyName} / 系列</p>
+                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">${category.fields.name || '未命名系列'}</h1>
+                    </section>
+                    ${filtered.map(s => `
+                        <div onclick="renderSubSeries('${s.sys.id}')" class="bg-white p-6 shadow-lg cursor-pointer hover:scale-105 transition rounded-xl text-center">
+                            <img src="${getImageUrl(s.fields)}" class="w-full h-48 object-cover mb-4 rounded-lg">
+                            <h2 class="text-xl font-bold uppercase text-red-600">${s.fields.series || '未命名系列'}</h2>
+                        </div>
+                    `).join('') || '<p class="col-span-3 text-center uppercase">这个系列尚未建立子系列</p>'}
+                `;
             } catch (err) { console.error(err); }
         }
 
@@ -383,7 +540,7 @@
                     const subId = Array.isArray(g.fields.subseries) ? g.fields.subseries[0]?.sys?.id : g.fields.subseries?.sys?.id;
                     return subId === subSeriesId;
                 });
-                if (filtered.length === 0) { view.innerHTML = '<p class="col-span-3 text-center uppercase">目前沒有產品。</p>'; return; }
+                if (filtered.length === 0) { view.innerHTML = '<p class="col-span-3 text-center uppercase">目前没有产品。</p>'; return; }
                 view.innerHTML = filtered.map(g => `
                     <a href="detail.html?id=${g.sys.id}" class="bg-white p-6 shadow-lg rounded-xl hover:scale-105 transition block">
                         <img src="${getImageUrl(g.fields)}" class="w-full h-64 object-cover mb-4 rounded-lg">
@@ -395,9 +552,10 @@
 
         async function renderStory(storyId) {
             hero.classList.add('hidden');
+            totem.classList.add('hidden');
             const data = await client.getEntry(storyId);
             
-            // 簡易 Rich Text 解析器
+            // 简易 Rich Text 解析器
             const content = data.fields.storyBox.content.map(node => {
                 if (node.nodeType === 'paragraph') {
                     return `<p class="mb-4 text-lg font-light leading-relaxed">${node.content.map(c => c.value).join('')}</p>`;
@@ -417,6 +575,7 @@
 
         async function renderNews() {
             hero.classList.add('hidden');
+            totem.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
@@ -427,14 +586,14 @@
                 });
 
                 if (data.items.length === 0) {
-                    view.innerHTML = '<p class="col-span-3 text-center uppercase">目前還沒有消息。</p>';
+                    view.innerHTML = '<p class="col-span-3 text-center uppercase">目前還没有消息。</p>';
                     return;
                 }
 
                 view.innerHTML = `
                     <section class="col-span-3 mb-2">
-                        <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-3">Akashura 快訊</p>
-                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">來自工作室的消息</h1>
+                        <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-3">Akashura 快讯</p>
+                        <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">来自工作室的消息</h1>
                     </section>
                     ${data.items.map(item => {
                     const fields = item.fields;
@@ -447,7 +606,7 @@
 
                     return `
                         <article class="bg-white p-6 shadow-lg text-black">
-                            ${imageUrl ? `<img src="${imageUrl}" class="w-full h-56 object-cover mb-5" alt="${fields.title || '消息圖片'}">` : '<img src="assets/custom-shop-altar.svg" class="w-full h-56 object-cover mb-5 bg-black" alt="Akashura 工作室視覺圖">'}
+                            ${imageUrl ? `<img src="${imageUrl}" class="w-full h-56 object-cover mb-5" alt="${fields.title || '消息图片'}">` : '<img src="assets/custom-shop-altar.svg" class="w-full h-56 object-cover mb-5 bg-black" alt="Akashura 工作室视觉图">'}
                             ${dateText ? `<p class="text-xs uppercase tracking-widest text-red-600 mb-3">${dateText}</p>` : ''}
                             <h2 class="text-2xl font-bold uppercase text-gray-900 mb-4">${fields.title || '未命名消息'}</h2>
                             <p class="text-gray-700 leading-relaxed">${fields.summary || ''}</p>
@@ -457,7 +616,7 @@
                 `;
             } catch (err) {
                 console.error(err);
-                view.innerHTML = '<p class="col-span-3 text-center text-red-500 uppercase">消息載入失敗。</p>';
+                view.innerHTML = '<p class="col-span-3 text-center text-red-500 uppercase">消息载入失败。</p>';
             }
         }
 
