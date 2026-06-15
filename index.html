@@ -108,11 +108,11 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 min-h-[420px]">
                     <div class="relative overflow-hidden bg-black md:col-span-2 md:row-span-2 border border-red-950/70">
-                        <img src="assets/shura-warrior-01.jpg" class="absolute inset-0 w-full h-full object-cover opacity-95" alt="AKSHURA 修罗角色主图">
+                        <img src="assets/shura-guitar-hero-02.jpg" class="absolute inset-0 w-full h-full object-cover opacity-95" alt="AKSHURA 修罗吉他主图">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-red-950/20"></div>
                     </div>
                     <div class="relative overflow-hidden bg-black border border-white/10">
-                        <img src="assets/shura-warrior-02.jpg" class="absolute inset-0 w-full h-full object-cover scale-125 origin-left opacity-90" alt="AKSHURA 修罗图腾切片">
+                        <img src="assets/shura-guitar-hero-01.jpg" class="absolute inset-0 w-full h-full object-cover scale-125 origin-left opacity-90" alt="AKSHURA 修罗吉他切片">
                     </div>
                     <div class="relative overflow-hidden bg-black border border-white/10">
                         <img src="assets/shura-ritual-01.png" class="absolute inset-0 w-full h-full object-cover scale-125 origin-right opacity-80" alt="AKSHURA 火焰祭坛图腾">
@@ -122,7 +122,7 @@
                         <div class="absolute inset-0 bg-red-900/35"></div>
                     </div>
                     <div class="relative overflow-hidden bg-black border border-white/10">
-                        <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover scale-110 opacity-85" alt="AKSHURA 笔刷横幅">
+                        <img src="assets/akashura-fire-banner.jpg" class="absolute inset-0 w-full h-full object-cover scale-110 opacity-85" alt="AKSHURA 火焰笔刷横幅">
                     </div>
                 </div>
             </div>
@@ -478,7 +478,7 @@
         function getStoryImage(fields) {
             const assetNode = fields.storyBox?.content?.find(node => node.nodeType === 'embedded-asset-block');
             const file = assetNode?.data?.target?.fields?.file;
-            return file?.url ? 'https:' + file.url : 'assets/brand-element-uucmpy.jpg';
+            return file?.url ? 'https:' + file.url : 'assets/akashura-logo-dragon.jpg';
         }
 
         function getStoryHeroImage() {
@@ -621,7 +621,7 @@
             const slug = fields.slug || '';
             if (slug === 'electric-bass') return 'assets/banner-electric-bass.png';
             if (slug === 'accessories') return 'assets/banner-accessories.png';
-            return 'assets/banner-electric-guitars.png';
+            return 'assets/stage-guitars-red.jpg';
         }
 
         async function renderProductFamily(familyId) {
@@ -802,7 +802,7 @@
                 view.innerHTML = `
                     <section class="col-span-3 -mx-5 md:-mx-10 -mt-5 md:-mt-10 mb-4">
                         <div class="relative min-h-[380px] md:min-h-[520px] overflow-hidden bg-black">
-                            <img src="assets/shura-warrior-02.jpg" class="absolute inset-0 w-full h-full object-cover opacity-75" alt="AKSHURA Story 修罗横幅">
+                            <img src="assets/akashura-fire-banner.jpg" class="absolute inset-0 w-full h-full object-cover opacity-75" alt="AKSHURA Story 火焰横幅">
                             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-red-950/25"></div>
                             <div class="absolute inset-0 flex items-center">
                                 <div class="max-w-6xl mx-auto w-full px-8 md:px-12">
