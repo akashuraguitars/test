@@ -18,7 +18,7 @@
                 </li>
                 <li class="relative">
                     <button onclick="toggleStory()" class="hover:text-gray-400">STORY</button>
-                    <div id="story-dropdown" class="absolute right-0 mt-2 w-64 bg-white text-black shadow-xl hidden p-4 z-50">
+                    <div id="story-dropdown" class="absolute right-0 mt-2 w-64 bg-black text-white border border-red-900/70 shadow-xl hidden p-4 z-50">
                     </div>
                 </li>
                 <li class="relative">
@@ -26,7 +26,7 @@
                 </li>
                 <li class="relative">
                     <button onclick="toggleProducts()" class="hover:text-gray-400">PRODUCTS</button>
-                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white text-black shadow-xl hidden p-2 z-50"></div>
+                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-black text-white border border-red-900/70 shadow-xl hidden p-2 z-50"></div>
                 </li>
                 <li class="text-gray-600 cursor-not-allowed">ARTISTS</li>
                 <li class="text-gray-600 cursor-not-allowed">CONTACT</li>
@@ -35,18 +35,18 @@
     </nav>
 
     <!-- 中间品牌区块：同步 index.html 大比例设计 -->
-    <div id="brand-header" class="flex flex-col items-center justify-center py-1.5 bg-white shadow-sm border-b border-gray-100 px-4">
+    <div id="brand-header" class="flex flex-col items-center justify-center py-1.5 bg-black shadow-sm border-b border-red-950 px-4">
         <div class="w-[85%] md:w-[45%] max-w-[650px] flex flex-col items-center">
             <div id="brand-logo-container" class="w-full flex justify-center mb-0">
-                <img id="brand-image" src="logo.png" alt="Akashura Guitars" class="w-full h-auto object-contain">
+                <img id="brand-image" src="logo.png" alt="Akashura Guitars" class="w-full h-auto object-contain invert">
             </div>
-            <h1 id="brand-title" class="text-4xl md:text-5xl font-extrabold tracking-widest text-black uppercase hidden">Akashura Guitars</h1>
-            <p id="brand-slogan" class="w-full text-center text-[9px] md:text-xs text-gray-500 font-light uppercase mt-1 tracking-[0.26em] md:tracking-[0.43em] whitespace-nowrap pl-[0.26em] md:pl-[0.43em]">打造属于演奏者的个性。</p>
+            <h1 id="brand-title" class="text-4xl md:text-5xl font-extrabold tracking-widest text-white uppercase hidden">Akashura Guitars</h1>
+            <p id="brand-slogan" class="w-full text-center text-[9px] md:text-xs text-red-400 font-light uppercase mt-1 tracking-[0.26em] md:tracking-[0.43em] whitespace-nowrap pl-[0.26em] md:pl-[0.43em]">打造属于演奏者的个性。</p>
         </div>
     </div>
 
-    <div class="p-10">
-        <div id="detail-view" class="max-w-6xl mx-auto bg-white p-8 rounded shadow">
+    <div class="p-5 md:p-10">
+        <div id="detail-view" class="max-w-6xl mx-auto bg-black/85 text-white p-6 md:p-8 shadow border border-red-950/70">
             <p>正在载入产品资料...</p>
         </div>
     </div>
@@ -70,21 +70,21 @@
             try {
                 const familyData = await client.getEntries({ content_type: 'productFamily', order: 'fields.order' });
                 dropdown.innerHTML = familyData.items.map(family => `
-                    <a href="index.html?family=${family.sys.id}" class="block px-4 py-3 hover:bg-gray-100">
-                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-700">${family.fields.slug || family.fields.name}</span>
-                        <span class="block pt-1 text-sm font-black text-black">${family.fields.name || '产品大类'}</span>
+                    <a href="index.html?family=${family.sys.id}" class="block px-4 py-3 hover:bg-red-950/60">
+                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-500">${family.fields.slug || family.fields.name}</span>
+                        <span class="block pt-1 text-sm font-black text-white">${family.fields.name || '产品大类'}</span>
                     </a>
                 `).join('');
                 if (!dropdown.innerHTML) dropdown.innerHTML = '<p class="px-4 py-2 text-xs text-gray-500">数据库尚未建立产品架构</p>';
                 
                 const storyData = await client.getEntries({ content_type: 'story' });
                 storyDropdown.innerHTML = `
-                    <a href="index.html?story=hub" class="block px-4 py-3 hover:bg-gray-100">
-                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-700">Story</span>
-                        <span class="block pt-1 text-sm font-black text-black">故事总览</span>
+                    <a href="index.html?story=hub" class="block px-4 py-3 hover:bg-red-950/60">
+                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-500">Story</span>
+                        <span class="block pt-1 text-sm font-black text-white">故事总览</span>
                     </a>
                 ` + storyData.items.map(s => `
-                    <a href="index.html?story=${s.sys.id}" class="block px-4 py-2 hover:bg-gray-100 uppercase text-sm">${s.fields.brandStory || '品牌故事'}</a>
+                    <a href="index.html?story=${s.sys.id}" class="block px-4 py-2 hover:bg-red-950/60 uppercase text-sm">${s.fields.brandStory || '品牌故事'}</a>
                 `).join('');
                 
                 const siteData = await client.getEntries({ content_type: 'siteSettings', include: 1 });
@@ -104,14 +104,14 @@
             try {
                 const entry = await client.getEntry(productId);
                 const fields = entry.fields;
-                let imageHtml = fields.image?.map(img => `<img src="https:${img.fields.file.url}" class="w-full h-auto max-h-[600px] object-contain rounded mb-4">`).join('') || '';
+                let imageHtml = fields.image?.map(img => `<img src="https:${img.fields.file.url}" class="w-full h-auto max-h-[600px] object-contain mb-4 bg-zinc-950">`).join('') || '';
 
                 document.getElementById('detail-view').innerHTML = `
                     ${imageHtml}
-                    <h1 class="text-4xl font-bold mb-4 uppercase tracking-tight text-gray-900">${fields.title}</h1>
-                    <div class="w-16 h-1 bg-black mb-6"></div>
-                    <p class="text-gray-700 whitespace-pre-line leading-relaxed text-lg mb-10">${fields.description || '目前没有产品说明。'}</p>
-                    <a href="index.html" class="inline-block px-8 py-3 bg-black text-white text-sm uppercase tracking-widest hover:bg-gray-800 transition rounded-none">回到产品列表</a>
+                    <h1 class="text-4xl font-bold mb-4 uppercase tracking-tight text-white">${fields.title}</h1>
+                    <div class="w-16 h-1 bg-red-700 mb-6"></div>
+                    <p class="text-gray-300 whitespace-pre-line leading-relaxed text-lg mb-10">${fields.description || '目前没有产品说明。'}</p>
+                    <a href="index.html" class="inline-block px-8 py-3 bg-red-700 text-white text-sm uppercase tracking-widest hover:bg-red-600 transition rounded-none">回到产品列表</a>
                 `;
             } catch (err) {
                 document.getElementById('detail-view').innerHTML = '<p class="text-red-500">产品资料载入失败。</p>';
