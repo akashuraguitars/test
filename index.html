@@ -18,14 +18,14 @@
                 </li>
                 <li class="relative">
                     <button onclick="toggleStory()" class="hover:text-gray-400">STORY</button>
-                    <div id="story-dropdown" class="absolute right-0 mt-2 w-64 bg-black text-white border border-red-900/70 shadow-xl hidden p-4 z-50"></div>
+                    <div id="story-dropdown" class="absolute right-0 mt-2 w-64 max-h-[70vh] overflow-y-auto bg-black text-white border border-red-900/70 shadow-xl hidden p-2 z-50"></div>
                 </li>
                 <li class="relative">
                     <button onclick="renderNews()" class="hover:text-gray-400">NEWS</button>
                 </li>
                 <li class="relative">
                     <button onclick="toggleProducts()" class="hover:text-gray-400">PRODUCTS</button>
-                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-black text-white border border-red-900/70 shadow-xl hidden p-2 z-50"></div>
+                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-56 max-h-[70vh] overflow-y-auto bg-black text-white border border-red-900/70 shadow-xl hidden p-2 z-50"></div>
                 </li>
                 <li class="text-gray-600 cursor-not-allowed">ARTISTS</li>
                 <li class="text-gray-600 cursor-not-allowed">CONTACT</li>
@@ -570,8 +570,8 @@
 
                 dropdown.innerHTML = families.map(family => `
                     <button onclick="renderProductFamily('${family.id}'); toggleProducts();" class="block w-full text-left px-4 py-3 hover:bg-red-950/60">
-                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-500">${family.label}</span>
-                        <span class="block pt-1 text-sm font-black text-white">${family.name}</span>
+                        <span class="block text-[10px] uppercase tracking-[0.2em] text-red-500 truncate">${family.label}</span>
+                        <span class="block pt-1 text-sm font-black text-white truncate">${family.name}</span>
                     </button>
                 `).join('');
                 if (!dropdown.innerHTML) {
@@ -581,11 +581,13 @@
                 const storyData = await client.getEntries({ content_type: 'story' });
                 storyDropdown.innerHTML = `
                     <button onclick="renderStoryHub(); toggleStory();" class="block w-full text-left px-4 py-3 hover:bg-red-950/60">
-                        <span class="block text-[10px] uppercase tracking-[0.25em] text-red-500">Story</span>
-                        <span class="block pt-1 text-sm font-black text-white">故事总览</span>
+                        <span class="block text-[10px] uppercase tracking-[0.2em] text-red-500">Story</span>
+                        <span class="block pt-1 text-sm font-black text-white truncate">故事总览</span>
                     </button>
                 ` + storyData.items.map(s => `
-                    <button onclick="renderStory('${s.sys.id}'); toggleStory();" class="block w-full text-left px-4 py-2 hover:bg-red-950/60 uppercase">${s.fields.brandStory || '品牌故事'}</button>
+                    <button onclick="renderStory('${s.sys.id}'); toggleStory();" class="block w-full text-left px-4 py-3 hover:bg-red-950/60 uppercase">
+                        <span class="block text-sm font-black text-white truncate">${s.fields.brandStory || '品牌故事'}</span>
+                    </button>
                 `).join('');
                 
                 const siteData = await client.getEntries({ content_type: 'siteSettings', include: 1 });
