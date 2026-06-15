@@ -176,6 +176,24 @@
             return img?.fields?.file ? 'https:' + img.fields.file.url : 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80';
         }
 
+        function getProductDisplayImage(item) {
+            const map = {
+                'guitar-neon-crimson-standard': 'assets/neon-crimson-black.jpg',
+                'guitar-neon-indigo-modern': 'assets/neon-indigo-black.jpg',
+                'guitar-neon-ivory-standard': 'assets/neon-ivory-black.jpg',
+                'guitar-neon-mint-modern': 'assets/neon-mint-black.jpg',
+                'guitar-neon-magenta-modern': 'assets/neon-magenta-black.jpg',
+                'guitar-akshura-crimson-evo': 'assets/akshura-crimson-black.jpg',
+                'guitar-akshura-prism-standard': 'assets/akshura-prism-black.jpg',
+                'guitar-akshura-violet-flagship': 'assets/akshura-violet-black.jpg',
+                'guitar-akshura-inferno-standard': 'assets/akshura-inferno-black.jpg',
+                'guitar-akshura-obsidian-flagship': 'assets/akshura-obsidian-black.jpg',
+                'bass-akshura-red-5': 'assets/bass-akshura-red-5-black.jpg',
+                'bass-neon-teal-4': 'assets/bass-neon-teal-4-black.jpg'
+            };
+            return map[item.sys?.id] || getImageUrl(item.fields);
+        }
+
         function getNewsImageUrl(fields) {
             const img = fields.image;
             if (Array.isArray(img)) return img[0]?.fields?.file ? 'https:' + img[0].fields.file.url : null;
@@ -284,7 +302,7 @@
                     return `
                         <a href="detail.html?id=${item.sys.id}" class="group bg-black text-white overflow-hidden block">
                             <div class="relative aspect-[4/5] bg-[#050505] overflow-hidden">
-                                <img src="${getImageUrl(item.fields)}" class="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-700" alt="${title}">
+                                <img src="${getProductDisplayImage(item)}" class="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-700" alt="${title}">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
                                 <div class="absolute left-5 right-5 bottom-5">
                                     <p class="text-[10px] uppercase tracking-[0.28em] text-red-500 mb-2">${line}</p>
@@ -308,7 +326,7 @@
                     tier: 'Standard / 1999',
                     tag: 'HSS 泛用平台，保留 Strat 系的速度与亮度',
                     specs: 'Alder 琴身 / 烤枫木加碳纤补强琴颈 / 科技乌木指板 / 25.5 吋弦长 / 24 格不锈钢 Jumbo / 后段陶瓷双线圈 + 中前段 Alnico 5',
-                    image: 'assets/neon-crimson.jpg'
+                    image: 'assets/neon-crimson-black.jpg'
                 },
                 {
                     line: 'NEON BEATS',
@@ -316,7 +334,7 @@
                     tier: 'Modern / 3999',
                     tag: '贴皮面板与 HH 可切单，舞台辨识度更高',
                     specs: 'Alder 琴身 + 贴皮面板 / 烤枫木加碳纤补强琴颈 / 烤枫木指板 / 12-16 吋复合弧度 / HH 四芯可切单 / 500k 音量与音色控制',
-                    image: 'assets/neon-indigo.jpg'
+                    image: 'assets/neon-indigo-black.jpg'
                 },
                 {
                     line: 'NEON BEATS',
@@ -324,7 +342,7 @@
                     tier: 'Standard / 1999',
                     tag: '干净外观的工作琴，重点放在稳定与反应',
                     specs: 'Bolt-On 结构 / SlimTaper C-shape / 第 1 格 19.7mm 到第 12 格 21.2mm / TUQS 上枕 / Wilkinson VS100N 规格桥系 / D Addario EXL120',
-                    image: 'assets/neon-ivory.jpg'
+                    image: 'assets/neon-ivory-black.jpg'
                 },
                 {
                     line: 'NEON BEATS',
@@ -332,7 +350,7 @@
                     tier: 'Modern / 3999',
                     tag: 'Modern 规格的亮色提案，适合流行与融合乐手',
                     specs: '贴皮面板 / 烤枫木指板 / 24 格不锈钢 Jumbo / HH 陶瓷 + Alnico 5 可切单 / 0.022uF orange drop 电容 / 金色五金',
-                    image: 'assets/neon-mint.jpg'
+                    image: 'assets/neon-mint-black.jpg'
                 },
                 {
                     line: 'NEON BEATS',
@@ -340,7 +358,7 @@
                     tier: 'Modern / 3999',
                     tag: '高对比主奏配色，保留 Modern 的双线圈切换弹性',
                     specs: 'Alder 琴身 + 贴皮面板 / 25.5 吋弦长 / 12-16 吋混合弧度 / Gotoh Magnum Lock-Trad 规格弦钮 / Wilkinson VS100N 规格颤音桥',
-                    image: 'assets/neon-magenta.jpg'
+                    image: 'assets/neon-magenta-black.jpg'
                 },
                 {
                     line: 'AKSHURA',
@@ -348,7 +366,7 @@
                     tier: 'EVO / 2999',
                     tag: 'Ash 琴身与 UV 虎纹面板，把攻击性推到前台',
                     specs: 'Ash 琴身 / UV Print 虎纹面板 / 烤枫木加碳纤补强琴颈 / 烤枫木指板 / HH 四芯可切单 / 后段陶瓷 12-14K + 前段 Alnico 5',
-                    image: 'assets/akshura-crimson.jpg'
+                    image: 'assets/akshura-crimson-black.jpg'
                 },
                 {
                     line: 'AKSHURA',
@@ -356,7 +374,7 @@
                     tier: 'Standard / 1999',
                     tag: '入门金属线，轮廓锐利但规格不妥协',
                     specs: 'Alder 琴身 / Bolt-On 结构 / 25.5 吋弦长 / 科技乌木指板 / 24 格不锈钢 Jumbo / HH 配置 / 拉起可切单 / 金色五金',
-                    image: 'assets/akshura-prism.jpg'
+                    image: 'assets/akshura-prism-black.jpg'
                 },
                 {
                     line: 'AKSHURA',
@@ -364,7 +382,7 @@
                     tier: 'Chao of Blead / 5999',
                     tag: '高阶金属声线，从木料到拾音器都拉满',
                     specs: '桃花心木琴身 / AAA 絮状枫木 5-6mm 面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan SH2 + RTM / 24 格不锈钢 Jumbo',
-                    image: 'assets/akshura-violet.jpg'
+                    image: 'assets/akshura-violet-black.jpg'
                 },
                 {
                     line: 'AKSHURA',
@@ -372,7 +390,7 @@
                     tier: 'Standard / 1999',
                     tag: '红色刀锋外观，搭配标准 HH 金属配置',
                     specs: 'Alder 琴身 / SlimTaper C-shape / 19-20mm 琴颈厚度 / 43mm TUQS 上枕 / 12-16 吋复合弧度 / 1 音量 1 音色，拉起可切单',
-                    image: 'assets/akshura-inferno.jpg'
+                    image: 'assets/akshura-inferno-black.jpg'
                 },
                 {
                     line: 'AKSHURA',
@@ -380,7 +398,7 @@
                     tier: 'Chao of Blead / 5999',
                     tag: '黑金高阶款，把低沉压迫感与华丽面板收在一起',
                     specs: '桃花心木琴身 / AAA 絮状枫木面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan NECK SH2 + BRIDGE RTM / Gloss 琴身、Matte 琴颈',
-                    image: 'assets/akshura-obsidian.jpg'
+                    image: 'assets/akshura-obsidian-black.jpg'
                 }
             ];
 

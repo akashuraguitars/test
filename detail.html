@@ -99,12 +99,29 @@
 
         const params = new URLSearchParams(window.location.search);
         const productId = params.get('id');
+        const productImageMap = {
+            'guitar-neon-crimson-standard': 'assets/neon-crimson-black.jpg',
+            'guitar-neon-indigo-modern': 'assets/neon-indigo-black.jpg',
+            'guitar-neon-ivory-standard': 'assets/neon-ivory-black.jpg',
+            'guitar-neon-mint-modern': 'assets/neon-mint-black.jpg',
+            'guitar-neon-magenta-modern': 'assets/neon-magenta-black.jpg',
+            'guitar-akshura-crimson-evo': 'assets/akshura-crimson-black.jpg',
+            'guitar-akshura-prism-standard': 'assets/akshura-prism-black.jpg',
+            'guitar-akshura-violet-flagship': 'assets/akshura-violet-black.jpg',
+            'guitar-akshura-inferno-standard': 'assets/akshura-inferno-black.jpg',
+            'guitar-akshura-obsidian-flagship': 'assets/akshura-obsidian-black.jpg',
+            'bass-akshura-red-5': 'assets/bass-akshura-red-5-black.jpg',
+            'bass-neon-teal-4': 'assets/bass-neon-teal-4-black.jpg'
+        };
 
         async function fetchDetail() {
             try {
                 const entry = await client.getEntry(productId);
                 const fields = entry.fields;
-                let imageHtml = fields.image?.map(img => `<img src="https:${img.fields.file.url}" class="w-full h-auto max-h-[600px] object-contain mb-4 bg-zinc-950">`).join('') || '';
+                const localImage = productImageMap[productId];
+                let imageHtml = localImage
+                    ? `<img src="${localImage}" class="w-full h-auto max-h-[600px] object-contain mb-4 bg-black">`
+                    : fields.image?.map(img => `<img src="https:${img.fields.file.url}" class="w-full h-auto max-h-[600px] object-contain mb-4 bg-black">`).join('') || '';
 
                 document.getElementById('detail-view').innerHTML = `
                     ${imageHtml}
