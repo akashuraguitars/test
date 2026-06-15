@@ -98,6 +98,37 @@
         </div>
     </section>
 
+    <section id="symbol-wall" class="bg-[#070403] border-b border-red-950/70 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-14">
+            <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-5 md:gap-7 items-stretch">
+                <div class="bg-white text-black p-7 md:p-10 flex flex-col justify-center">
+                    <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">品牌纹理</p>
+                    <h3 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-5">把修罗图腾藏进每个细节。</h3>
+                    <p class="text-gray-700 leading-relaxed text-base md:text-lg">这组 Gemini 元素会成为 AKSHURA 的视觉底纹：切成近景、斜角与横幅，在页面里形成密度，让品牌不只靠单张主视觉撑气势。</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 min-h-[420px]">
+                    <div class="relative overflow-hidden bg-black md:col-span-2 md:row-span-2 border border-red-950/70">
+                        <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover opacity-95" alt="AKSHURA 品牌纹理主图">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-red-950/20"></div>
+                    </div>
+                    <div class="relative overflow-hidden bg-black border border-white/10">
+                        <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover scale-150 origin-left opacity-90" alt="AKSHURA 图腾切片">
+                    </div>
+                    <div class="relative overflow-hidden bg-black border border-white/10">
+                        <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover scale-125 origin-right opacity-80" alt="AKSHURA 图腾切片">
+                    </div>
+                    <div class="relative overflow-hidden bg-red-950 border border-red-800">
+                        <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover scale-150 opacity-45 mix-blend-screen" alt="AKSHURA 红色纹理">
+                        <div class="absolute inset-0 bg-red-900/35"></div>
+                    </div>
+                    <div class="relative overflow-hidden bg-black border border-white/10">
+                        <img src="assets/brand-element-uucmpy.jpg" class="absolute inset-0 w-full h-full object-cover scale-110 opacity-85" alt="AKSHURA 图腾横幅">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="content-view" class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 p-5 md:p-10">
     </div>
 
@@ -113,6 +144,7 @@
         const storyDropdown = document.getElementById('story-dropdown');
         const hero = document.getElementById('hero-section');
         const totem = document.getElementById('totem-section');
+        const symbolWall = document.getElementById('symbol-wall');
         const brandImage = document.getElementById('brand-image');
         const brandSlogan = document.getElementById('brand-slogan');
         const fallbackProductFamilies = [
@@ -151,6 +183,7 @@
         async function renderHome() {
             hero.classList.remove('hidden');
             totem.classList.remove('hidden');
+            symbolWall.classList.remove('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
@@ -177,7 +210,7 @@
                     </div>
                     <div class="bg-white text-black p-8 md:p-10 shadow-2xl">
                         <p class="text-xs uppercase tracking-[0.35em] text-red-700 mb-5">开发方向</p>
-                        <h3 class="text-2xl md:text-4xl font-black uppercase leading-tight mb-6">從规格表，走向真正的舞台器物。</h3>
+                        <h3 class="text-2xl md:text-4xl font-black uppercase leading-tight mb-6">从规格表，走向真正的舞台器物。</h3>
                         <p class="text-gray-700 leading-relaxed">开发语言很清楚：烤枫木琴颈、碳纤补强、12"-16" 复合指板弧度、24 格不锈钢 Jumbo 品丝、锁定弦钮、Wilkinson-style 颤音系统，以及在舞台灯下能一眼辨识的配色。</p>
                         <button onclick="renderConceptLine()" class="mt-8 w-full px-6 py-4 bg-black hover:bg-red-800 text-white text-xs uppercase tracking-widest">查看视觉样张</button>
                     </div>
@@ -207,14 +240,14 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                         <div class="md:col-span-2">
                             <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-4">制琴语言</p>
-                            <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">锐利琴身、克制细節，留給双手去放大声音。</h2>
+                            <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">锐利琴身、克制细节，留给双手去放大声音。</h2>
                         </div>
                         <div>
                             <h3 class="text-lg font-black uppercase mb-3">琴颈</h3>
                             <p class="text-sm text-gray-300 leading-relaxed">烤枫木、碳纤补强、SlimTaper C 手感、雾面处理、spoke-nut 调整结构。</p>
                         </div>
                         <div>
-                            <h3 class="text-lg font-black uppercase mb-3">声音設定</h3>
+                            <h3 class="text-lg font-black uppercase mb-3">声音设定</h3>
                             <p class="text-sm text-gray-300 leading-relaxed">HSS 对应现代泛用性，HH 聚焦金属声线，搭配切单线路与 0.022 uF orange drop 音色电容。</p>
                         </div>
                     </div>
@@ -394,6 +427,7 @@
         function renderConceptLine() {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
@@ -477,6 +511,7 @@
         async function renderProductFamily(familyId) {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
@@ -537,6 +572,7 @@
         async function renderSeries(catId) {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
             try {
                 const category = await client.getEntry(catId);
                 let familyName = '产品大类';
@@ -601,6 +637,7 @@
         async function renderStory(storyId) {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
             const data = await client.getEntry(storyId);
             
             // 简易 Rich Text 解析器
@@ -624,6 +661,7 @@
         async function renderNews() {
             hero.classList.add('hidden');
             totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
 
@@ -634,7 +672,7 @@
                 });
 
                 if (data.items.length === 0) {
-                    view.innerHTML = '<p class="col-span-3 text-center uppercase">目前還没有消息。</p>';
+                    view.innerHTML = '<p class="col-span-3 text-center uppercase">目前还没有消息。</p>';
                     return;
                 }
 
