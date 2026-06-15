@@ -148,7 +148,7 @@
             return img?.fields?.file ? 'https:' + img.fields.file.url : null;
         }
 
-        function renderHome() {
+        async function renderHome() {
             hero.classList.remove('hidden');
             totem.classList.remove('hidden');
             dropdown.classList.add('hidden');
@@ -185,11 +185,11 @@
                 <section class="col-span-3">
                     <div class="flex items-end justify-between gap-4 mb-5">
                         <div>
-                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">設計样张</p>
-                            <h2 class="text-2xl md:text-4xl font-black uppercase">十款视觉提案</h2>
+                            <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">真实上架</p>
+                            <h2 class="text-2xl md:text-4xl font-black uppercase">数据库产品</h2>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
+                    <div id="home-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
                         ${conceptCards()}
                     </div>
                 </section>
@@ -220,6 +220,54 @@
                     </div>
                 </section>
             `;
+
+            renderHomeProducts();
+        }
+
+        async function renderHomeProducts() {
+            const grid = document.getElementById('home-product-grid');
+            if (!grid) return;
+
+            try {
+                const data = await client.getEntries({ content_type: 'guitar', include: 2, limit: 100 });
+                const preferredOrder = [
+                    'guitar-neon-crimson-standard',
+                    'guitar-neon-indigo-modern',
+                    'guitar-neon-ivory-standard',
+                    'guitar-neon-mint-modern',
+                    'guitar-neon-magenta-modern',
+                    'guitar-akshura-crimson-evo',
+                    'guitar-akshura-prism-standard',
+                    'guitar-akshura-violet-flagship',
+                    'guitar-akshura-inferno-standard',
+                    'guitar-akshura-obsidian-flagship'
+                ];
+                const products = data.items
+                    .filter(item => preferredOrder.includes(item.sys.id))
+                    .sort((a, b) => preferredOrder.indexOf(a.sys.id) - preferredOrder.indexOf(b.sys.id));
+
+                if (!products.length) return;
+                grid.innerHTML = products.map(item => {
+                    const title = item.fields.title || '未命名产品';
+                    const description = item.fields.description || '';
+                    const tier = description.split('。')[0] || '已上架';
+                    const summary = description.split('。').slice(1).join('。') || description;
+                    const line = title.startsWith('NEON BEATS') ? 'NEON BEATS' : 'AKSHURA';
+                    return `
+                        <a href="detail.html?id=${item.sys.id}" class="group bg-white text-black shadow-xl overflow-hidden block">
+                            <img src="${getImageUrl(item.fields)}" class="w-full aspect-[4/5] object-contain bg-zinc-950" alt="${title}">
+                            <div class="p-5 md:p-6">
+                                <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 mb-2">${line}</p>
+                                <p class="text-xs uppercase tracking-[0.24em] text-red-700 mb-3">${tier}</p>
+                                <h3 class="text-xl font-black uppercase mb-3">${title.replace(line, '').trim()}</h3>
+                                <p class="text-sm leading-relaxed text-gray-700">${summary}</p>
+                            </div>
+                        </a>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error(err);
+            }
         }
 
         function conceptCards() {
@@ -244,7 +292,7 @@
                     line: 'NEON BEATS',
                     name: '象牙 Standard',
                     tier: 'Standard / 1999',
-                    tag: '乾淨外觀的工作琴，重点放在稳定与反应',
+                    tag: '干净外观的工作琴，重点放在稳定与反应',
                     specs: 'Bolt-On 结构 / SlimTaper C-shape / 第 1 格 19.7mm 到第 12 格 21.2mm / TUQS 上枕 / Wilkinson VS100N 规格桥系 / D Addario EXL120',
                     image: 'assets/neon-ivory.jpg'
                 },
@@ -252,7 +300,7 @@
                     line: 'NEON BEATS',
                     name: '薄荷 Modern',
                     tier: 'Modern / 3999',
-                    tag: 'Modern 规格的亮色提案，適合流行与融合樂手',
+                    tag: 'Modern 规格的亮色提案，适合流行与融合乐手',
                     specs: '贴皮面板 / 烤枫木指板 / 24 格不锈钢 Jumbo / HH 陶瓷 + Alnico 5 可切单 / 0.022uF orange drop 电容 / 金色五金',
                     image: 'assets/neon-mint.jpg'
                 },
@@ -276,7 +324,7 @@
                     line: 'AKSHURA',
                     name: '棱镜 Standard',
                     tier: 'Standard / 1999',
-                    tag: '入門金属线，轮廓锐利但规格不妥協',
+                    tag: '入门金属线，轮廓锐利但规格不妥协',
                     specs: 'Alder 琴身 / Bolt-On 结构 / 25.5 吋弦长 / 科技乌木指板 / 24 格不锈钢 Jumbo / HH 配置 / 拉起可切单 / 金色五金',
                     image: 'assets/akshura-prism.jpg'
                 },
@@ -284,15 +332,15 @@
                     line: 'AKSHURA',
                     name: '紫焰 Chao of Blead',
                     tier: 'Chao of Blead / 5999',
-                    tag: '高阶金属声线，從木料到拾音器都拉滿',
-                    specs: '桃花心木琴身 / AAA 絮狀枫木 5-6mm 面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan SH2 + RTM / 24 格不锈钢 Jumbo',
+                    tag: '高阶金属声线，从木料到拾音器都拉满',
+                    specs: '桃花心木琴身 / AAA 絮状枫木 5-6mm 面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan SH2 + RTM / 24 格不锈钢 Jumbo',
                     image: 'assets/akshura-violet.jpg'
                 },
                 {
                     line: 'AKSHURA',
                     name: '炎刃 Standard',
                     tier: 'Standard / 1999',
-                    tag: '红色刀锋外觀，搭配標準 HH 金属配置',
+                    tag: '红色刀锋外观，搭配标准 HH 金属配置',
                     specs: 'Alder 琴身 / SlimTaper C-shape / 19-20mm 琴颈厚度 / 43mm TUQS 上枕 / 12-16 吋复合弧度 / 1 音量 1 音色，拉起可切单',
                     image: 'assets/akshura-inferno.jpg'
                 },
@@ -300,8 +348,8 @@
                     line: 'AKSHURA',
                     name: '黑曜 Chao of Blead',
                     tier: 'Chao of Blead / 5999',
-                    tag: '黑金高阶款，把低沉压迫感与華麗面板收在一起',
-                    specs: '桃花心木琴身 / AAA 絮狀枫木面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan NECK SH2 + BRIDGE RTM / Gloss 琴身、Matte 琴颈',
+                    tag: '黑金高阶款，把低沉压迫感与华丽面板收在一起',
+                    specs: '桃花心木琴身 / AAA 絮状枫木面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan NECK SH2 + BRIDGE RTM / Gloss 琴身、Matte 琴颈',
                     image: 'assets/akshura-obsidian.jpg'
                 }
             ];
