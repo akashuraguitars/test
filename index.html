@@ -7,6 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
     <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
         .mode-link {
             min-width: 104px;
             padding: 8px 12px;
@@ -22,6 +26,64 @@
             color: #fff;
             background: #b91c1c;
             border-color: #dc2626;
+        }
+        .hyper-frame {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            scroll-snap-type: x mandatory;
+            padding: 6px 0 18px;
+        }
+        .hyper-frame::-webkit-scrollbar {
+            height: 6px;
+        }
+        .hyper-frame::-webkit-scrollbar-thumb {
+            background: #991b1b;
+        }
+        .hyper-card {
+            position: relative;
+            flex: 0 0 clamp(260px, 34vw, 420px);
+            min-height: 360px;
+            overflow: hidden;
+            scroll-snap-align: center;
+            border: 1px solid rgba(127, 29, 29, 0.75);
+            background: #050101;
+        }
+        .hyper-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.78;
+            transition: transform 800ms ease, opacity 800ms ease;
+        }
+        .hyper-card:hover img {
+            transform: scale(1.08);
+            opacity: 0.95;
+        }
+        .hyper-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.15) 52%, rgba(127, 29, 29, 0.18)),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 7px);
+            mix-blend-mode: normal;
+        }
+        .hyper-card-body {
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+            z-index: 1;
+        }
+        @media (max-width: 640px) {
+            .hyper-card {
+                flex-basis: 82vw;
+                min-height: 330px;
+            }
         }
     </style>
 </head>
@@ -495,6 +557,65 @@
             return 'assets/akshura-crimson.jpg';
         }
 
+        function hyperFrameShowcase() {
+            const frames = [
+                {
+                    image: 'assets/shura-stage-warrior.jpg',
+                    label: 'Frame 01',
+                    title: '修罗登场',
+                    text: '第一眼建立品牌气势，红、黑、火光先把情绪打满。'
+                },
+                {
+                    image: 'assets/shura-guitar-hero-02.jpg',
+                    label: 'Frame 02',
+                    title: '琴体近景',
+                    text: '把视觉压到产品轮廓，让故事不是装饰，而是进入产品。'
+                },
+                {
+                    image: 'assets/akashura-logo-blade.jpg',
+                    label: 'Frame 03',
+                    title: '赤红笔势',
+                    text: 'Logo、刀锋、刷痕成为品牌识别，不只靠单张主视觉。'
+                },
+                {
+                    image: 'assets/stage-guitars-redblue.jpg',
+                    label: 'Frame 04',
+                    title: '舞台冷暖',
+                    text: '用蓝红对比保留现代感，避免全站只剩单一火焰色。'
+                },
+                {
+                    image: 'assets/brand-element-uucmpy.jpg',
+                    label: 'Frame 05',
+                    title: '图腾密度',
+                    text: '素材会像分镜墙一样铺开，Story 区负责承接世界观。'
+                }
+            ];
+
+            return `
+                <section class="col-span-3 max-w-6xl mx-auto my-10 md:my-14 overflow-hidden">
+                    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-5">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.38em] text-red-500 mb-3">Hyper Frame Story</p>
+                            <h2 class="text-3xl md:text-5xl font-black uppercase leading-none">视觉分镜墙</h2>
+                        </div>
+                        <p class="max-w-lg text-sm text-gray-300 leading-relaxed">把素材拆成连续画面，让品牌故事像一段可滑动的预告片。手机上横向滑动，桌面上用鼠标滚轮或拖曳观看。</p>
+                    </div>
+                    <div class="hyper-frame">
+                        ${frames.map(frame => `
+                            <figure class="hyper-card">
+                                <img src="${frame.image}" alt="${frame.title}">
+                                <figcaption class="hyper-card-body">
+                                    <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">${frame.label}</p>
+                                    <h3 class="text-2xl md:text-3xl font-black uppercase leading-none">${frame.title}</h3>
+                                    <p class="mt-4 text-sm text-gray-300 leading-relaxed">${frame.text}</p>
+                                </figcaption>
+                            </figure>
+                        `).join('')}
+                    </div>
+                </section>
+            `;
+        }
+
         async function renderHomeFamilies() {
             const grid = document.getElementById('home-family-grid');
             if (!grid) return;
@@ -832,6 +953,7 @@
                             </div>
                         </div>
                     </section>
+                    ${hyperFrameShowcase()}
                     <section class="col-span-3 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
                         ${storyCards || storyGuide()}
                     </section>
@@ -859,6 +981,7 @@
                             <h1 class="text-3xl md:text-6xl font-black uppercase leading-tight">${fields.brandStory || '品牌故事'}</h1>
                         </div>
                     </div>
+                    ${hyperFrameShowcase()}
                     <div class="p-7 md:p-12">
                         ${content || '<p class="text-gray-300 leading-relaxed">这篇故事已经建立，内容可以继续从 Contentful 补齐。</p>'}
                     </div>
