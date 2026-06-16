@@ -385,13 +385,13 @@
                             </div>
                         </a>
                     `;
-                }).join('');
+                }).join('') + conceptCards('AKSHURA');
             } catch (err) {
                 console.error(err);
             }
         }
 
-        function conceptCards() {
+        function conceptCards(filterLine = null) {
             const concepts = [
                 {
                     line: 'NEON BEATS',
@@ -439,7 +439,7 @@
                     tier: 'EVO / 2999',
                     tag: 'Ash 琴身与 UV 虎纹面板，把攻击性推到前台',
                     specs: 'Ash 琴身 / UV Print 虎纹面板 / 烤枫木加碳纤补强琴颈 / 烤枫木指板 / HH 四芯可切单 / 后段陶瓷 12-14K + 前段 Alnico 5',
-                    image: 'assets/akshura-crimson.jpg'
+                    image: 'assets/akshura-official/akshura-crimson-evo-official.png'
                 },
                 {
                     line: 'AKSHURA',
@@ -447,7 +447,7 @@
                     tier: 'Standard / 1999',
                     tag: '入门金属线，轮廓锐利但规格不妥协',
                     specs: 'Alder 琴身 / Bolt-On 结构 / 25.5 吋弦长 / 科技乌木指板 / 24 格不锈钢 Jumbo / HH 配置 / 拉起可切单 / 金色五金',
-                    image: 'assets/akshura-prism.jpg'
+                    image: 'assets/akshura-official/akshura-violet-burst-standard.png'
                 },
                 {
                     line: 'AKSHURA',
@@ -455,7 +455,7 @@
                     tier: 'Chao of Blead / 5999',
                     tag: '高阶金属声线，从木料到拾音器都拉满',
                     specs: '桃花心木琴身 / AAA 絮状枫木 5-6mm 面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan SH2 + RTM / 24 格不锈钢 Jumbo',
-                    image: 'assets/akshura-violet.jpg'
+                    image: 'assets/akshura-official/akshura-violet-flagship-official.png'
                 },
                 {
                     line: 'AKSHURA',
@@ -463,7 +463,7 @@
                     tier: 'Standard / 1999',
                     tag: '红色刀锋外观，搭配标准 HH 金属配置',
                     specs: 'Alder 琴身 / SlimTaper C-shape / 19-20mm 琴颈厚度 / 43mm TUQS 上枕 / 12-16 吋复合弧度 / 1 音量 1 音色，拉起可切单',
-                    image: 'assets/akshura-inferno.jpg'
+                    image: 'assets/akshura-official/akshura-tangerine-standard.png'
                 },
                 {
                     line: 'AKSHURA',
@@ -471,11 +471,53 @@
                     tier: 'Chao of Blead / 5999',
                     tag: '黑金高阶款，把低沉压迫感与华丽面板收在一起',
                     specs: '桃花心木琴身 / AAA 絮状枫木面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan NECK SH2 + BRIDGE RTM / Gloss 琴身、Matte 琴颈',
-                    image: 'assets/akshura-obsidian.jpg'
+                    image: 'assets/akshura-official/akshura-obsidian-standard-official.png'
+                },
+                {
+                    line: 'AKSHURA',
+                    name: '金顶 EVO',
+                    tier: 'EVO / 2999',
+                    tag: '金色面板与红色拾音器形成舞台焦点',
+                    specs: 'Ash 琴身 / 金色金属漆面 / 烤枫木琴颈 / HH 可切单 / 复古金色五金 / 适合主奏与硬摇滚',
+                    image: 'assets/akshura-official/akshura-goldtop-evo.png'
+                },
+                {
+                    line: 'AKSHURA',
+                    name: '青岚 Standard',
+                    tier: 'Standard / 1999',
+                    tag: '冷色金属线，保留 AKSHURA 琴身攻击轮廓',
+                    specs: 'Alder 琴身 / 科技乌木指板 / 24 格不锈钢 Jumbo / HH 陶瓷 + Alnico 5 / 12-16 吋复合弧度',
+                    image: 'assets/akshura-official/akshura-cyan-standard.png'
+                },
+                {
+                    line: 'AKSHURA',
+                    name: '洋红 EVO',
+                    tier: 'EVO / 2999',
+                    tag: '更鲜明的舞台色，适合视觉系与现代金属',
+                    specs: 'Ash 琴身 / 高亮洋红面板 / 烤枫木加碳纤补强琴颈 / HH 四芯可切单 / 金色五金',
+                    image: 'assets/akshura-official/akshura-magenta-evo.png'
+                },
+                {
+                    line: 'AKSHURA',
+                    name: '铜橙 EVO',
+                    tier: 'EVO / 2999',
+                    tag: '暖色木纹与红色拾音器，兼具速度感与手工味',
+                    specs: 'Ash 琴身 / 火焰纹视觉面板 / 烤枫木指板 / HH 可切单 / Wilkinson 规格桥系 / 金色五金',
+                    image: 'assets/akshura-official/akshura-copper-evo.png'
+                },
+                {
+                    line: 'AKSHURA',
+                    name: '森林 Standard',
+                    tier: 'Standard / 1999',
+                    tag: '黑绿低调配色，适合重型节奏与暗色舞台',
+                    specs: 'Alder 琴身 / 深绿金属面板 / 24 格不锈钢 Jumbo / HH 配置 / 拉起可切单 / 黑金五金',
+                    image: 'assets/akshura-official/akshura-forest-standard.png'
                 }
             ];
 
-            return concepts.map(item => `
+            return concepts
+                .filter(item => !filterLine || item.line === filterLine)
+                .map(item => `
                 <article class="group bg-black/85 text-white border border-white/10 shadow-xl overflow-hidden">
                     <img src="${item.image}" class="w-full aspect-[4/5] object-contain bg-zinc-950" alt="${item.name}">
                     <div class="p-5 md:p-6">
@@ -682,7 +724,7 @@
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">${conceptCards()}</div>
                     <div class="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8">
-                        <img src="assets/metal-red.jpg" class="w-full bg-black shadow-2xl object-contain max-h-[620px]" alt="AKSHURA metal guitar">
+                        <img src="assets/akshura-official/akshura-lineup-five.png" class="w-full bg-black shadow-2xl object-contain max-h-[620px]" alt="AKSHURA official lineup">
                         <div class="bg-black/85 text-white p-8 md:p-10 border border-red-950/70">
                             <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">数据库分类逻辑</p>
                             <div class="space-y-6">
