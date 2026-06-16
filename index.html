@@ -6,6 +6,24 @@
     <title>Akashura Guitars</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+    <style>
+        .mode-link {
+            min-width: 104px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: rgba(255, 255, 255, 0.78);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .mode-link.active {
+            color: #fff;
+            background: #b91c1c;
+            border-color: #dc2626;
+        }
+    </style>
 </head>
 <body class="bg-black text-white bg-[url('bgrond.jpg')] bg-fixed bg-cover bg-center">
 
@@ -41,6 +59,10 @@
             </div>
             <h1 id="brand-title" class="text-4xl md:text-5xl font-extrabold tracking-widest text-white uppercase hidden">Akashura Guitars</h1>
             <p id="brand-slogan" class="w-full text-center text-[9px] md:text-xs text-red-400 font-light uppercase mt-1 tracking-[0.26em] md:tracking-[0.43em] whitespace-nowrap pl-[0.26em] md:pl-[0.43em]">打造属于演奏者的个性。</p>
+            <div id="mode-switcher" class="mt-3 flex items-center justify-center gap-2" aria-label="切换网站模式">
+                <a id="ukiyo-mode-link" class="mode-link" href="https://akashuraguitars.github.io/light/">浮世绘模式</a>
+                <a class="mode-link active" href="index.html" aria-current="page">修罗模式</a>
+            </div>
         </div>
     </div>
 
@@ -149,6 +171,10 @@
         const symbolWall = document.getElementById('symbol-wall');
         const brandImage = document.getElementById('brand-image');
         const brandSlogan = document.getElementById('brand-slogan');
+        const ukiyoModeLink = document.getElementById('ukiyo-mode-link');
+        if (ukiyoModeLink && location.hostname === 'localhost') {
+            ukiyoModeLink.href = 'http://localhost:4188/index.html';
+        }
         const fallbackProductFamilies = [
             {
                 name: '电吉他',
