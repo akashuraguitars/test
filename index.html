@@ -874,7 +874,7 @@
                             ${seriesItems.map(series => `
                                 <button onclick="renderSubSeries('${series.sys.id}')" class="group text-left bg-black/85 text-white border border-white/10 overflow-hidden shadow-xl">
                                     <div class="aspect-[16/10] bg-zinc-950 overflow-hidden">
-                                        <img src="${seriesPreview(series)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${series.fields.series || '系列'}">
+                                        <img src="${seriesPreview(series)}" class="w-full h-full object-contain object-center bg-black group-hover:scale-105 transition duration-500" alt="${series.fields.series || '系列'}">
                                     </div>
                                     <div class="p-6">
                                         <p class="text-[10px] uppercase tracking-[0.25em] text-red-700 mb-3">${family.fields.name || '产品大类'}</p>
