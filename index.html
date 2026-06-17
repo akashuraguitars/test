@@ -360,12 +360,17 @@
                     'guitar-akshura-prism-standard',
                     'guitar-akshura-violet-flagship',
                     'guitar-akshura-inferno-standard',
-                    'guitar-akshura-obsidian-flagship'
+                    'guitar-akshura-obsidian-flagship',
+                    'guitar-akshura-goldtop-evo',
+                    'guitar-akshura-cyan-standard',
+                    'guitar-akshura-magenta-evo',
+                    'guitar-akshura-copper-evo',
+                    'guitar-akshura-forest-standard'
                 ];
                 const products = data.items
                     .filter(item => preferredOrder.includes(item.sys.id))
                     .sort((a, b) => preferredOrder.indexOf(a.sys.id) - preferredOrder.indexOf(b.sys.id))
-                    .slice(0, 4);
+                    .slice(0, 15);
 
                 if (!products.length) return;
                 grid.innerHTML = products.map(item => {
@@ -385,7 +390,7 @@
                             </div>
                         </a>
                     `;
-                }).join('') + conceptCards('AKSHURA');
+                }).join('');
             } catch (err) {
                 console.error(err);
             }
