@@ -827,13 +827,26 @@
                     client.getEntries({ content_type: 'category', include: 1, limit: 100 }),
                     client.getEntries({ content_type: 'series', include: 1, limit: 100 })
                 ]);
-                const categories = data.items
+                const categoryIds = new Set(data.items
                     .filter(cat => cat.fields.productFamily?.sys?.id === familyId)
-                    .sort((a, b) => (a.fields.name || '').localeCompare(b.fields.name || ''));
+                    .map(cat => cat.sys.id));
+                const seriesMap = new Map();
+                seriesData.items
+                    .filter(item => categoryIds.has(item.fields.category?.sys?.id))
+                    .forEach(item => {
+                        const key = (item.fields.series || item.sys.id).trim().toLowerCase().replace(/\s+/g, '-');
+                        const current = seriesMap.get(key);
+                        if (!current || (item.sys.id.startsWith('series-') && !current.sys.id.startsWith('series-'))) {
+                            seriesMap.set(key, item);
+                        }
+                    });
+                const seriesItems = Array.from(seriesMap.values())
+                    .sort((a, b) => (a.fields.series || '').localeCompare(b.fields.series || ''));
                 const banner = getFamilyBanner(family.fields);
-                const categoryPreview = (cat) => {
-                    const linkedSeries = seriesData.items.find(item => item.fields.category?.sys?.id === cat.sys.id);
-                    return linkedSeries ? getImageUrl(linkedSeries.fields) : getFamilyBanner(family.fields);
+                const seriesPreview = (item) => {
+                    return (item.fields.seriesImage || item.fields.image)
+                        ? getImageUrl(item.fields)
+                        : getFamilyBanner(family.fields);
                 };
 
                 view.innerHTML = `
@@ -845,7 +858,7 @@
                                 <div class="max-w-6xl mx-auto w-full px-8 md:px-12">
                                     <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-4">PRODUCT FAMILY</p>
                                     <h1 class="text-4xl md:text-7xl font-black uppercase leading-none">${family.fields.name || '产品大类'}</h1>
-                                    <p class="max-w-2xl mt-5 text-sm md:text-lg text-gray-200 leading-relaxed">${family.fields.description || '选择一个系列，进入下一层产品结构。'}</p>
+                                    <p class="max-w-2xl mt-5 text-sm md:text-lg text-gray-200 leading-relaxed">${family.fields.description || '选择系列后直接进入子分类。'}</p>
                                 </div>
                             </div>
                         </div>
@@ -858,14 +871,14 @@
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                            ${categories.map(cat => `
-                                <button onclick="renderSeries('${cat.sys.id}')" class="group text-left bg-black/85 text-white border border-white/10 overflow-hidden shadow-xl">
+                            ${seriesItems.map(series => `
+                                <button onclick="renderSubSeries('${series.sys.id}')" class="group text-left bg-black/85 text-white border border-white/10 overflow-hidden shadow-xl">
                                     <div class="aspect-[16/10] bg-zinc-950 overflow-hidden">
-                                        <img src="${categoryPreview(cat)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${cat.fields.name || '系列'}">
+                                        <img src="${seriesPreview(series)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${series.fields.series || '系列'}">
                                     </div>
                                     <div class="p-6">
                                         <p class="text-[10px] uppercase tracking-[0.25em] text-red-700 mb-3">${family.fields.name || '产品大类'}</p>
-                                        <h3 class="text-2xl font-black uppercase">${cat.fields.name || '未命名系列'}</h3>
+                                        <h3 class="text-2xl font-black uppercase">${series.fields.series || '未命名系列'}</h3>
                                     </div>
                                 </button>
                             `).join('') || '<p class="col-span-3 text-center uppercase">这个大类的系列规划中。</p>'}
