@@ -376,7 +376,7 @@
                 grid.innerHTML = products.map(item => {
                     const title = item.fields.title || '未命名产品';
                     const line = title.startsWith('NEON BEATS') ? 'NEON BEATS' : 'AKSHURA';
-                    const tier = title.match(/Standard|Modern|EVO|Chao of Blade|Flagship/i)?.[0] || '已上架';
+                    const tier = title.match(/Standard|Modern|EVO|Chaos of Blade|Flagship/i)?.[0] || '已上架';
                     return `
                         <a href="detail.html?id=${item.sys.id}" class="group bg-white text-[#171717] overflow-hidden block border border-red-950/25 shadow-xl">
                             <div class="relative aspect-[16/9] bg-white overflow-hidden">
@@ -544,8 +544,8 @@
                 },
                 {
                     title: 'AKSHURA',
-                    subtitle: 'Standard / EVO / Chao of Blade',
-                    body: '电吉他大类底下的金属系列。Standard 建立 HH 刀锋轮廓；EVO 升级 Ash 琴身与 UV 虎纹面板；Chao of Blade 进入桃花心木、AAA 枫木面板与 Duncan SH2 / RTM 的高阶配置。'
+                    subtitle: 'Standard / EVO / Chaos of Blade',
+                    body: '电吉他大类底下的金属系列。Standard 建立 HH 刀锋轮廓；EVO 升级 Ash 琴身与 UV 虎纹面板；Chaos of Blade 进入桃花心木、AAA 枫木面板与 Duncan SH2 / RTM 的高阶配置。'
                 },
             ];
 
@@ -911,7 +911,7 @@
                     </section>
                     ${filtered.map(s => `
                         <div onclick="renderSubSeries('${s.sys.id}')" class="bg-black/85 p-4 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
-                            <div class="aspect-[16/9] bg-white overflow-hidden mb-4 border border-red-950/40">
+                            <div class="aspect-[16/9] bg-black overflow-hidden mb-4 border border-red-950/40">
                                 <img src="${getImageUrl(s.fields)}" class="w-full h-full object-contain object-center">
                             </div>
                             <h2 class="text-xl font-bold uppercase text-red-600">${s.fields.series || '未命名系列'}</h2>
@@ -930,7 +930,7 @@
                 });
                 view.innerHTML = filtered.map(ss => `
                     <div onclick="renderProducts('${ss.sys.id}')" class="bg-black/85 p-4 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
-                        <div class="aspect-[16/9] bg-white overflow-hidden mb-4 border border-red-950/40">
+                        <div class="aspect-[16/9] bg-black overflow-hidden mb-4 border border-red-950/40">
                             <img src="${getImageUrl(ss.fields)}" class="w-full h-full object-contain object-center">
                         </div>
                         <h2 class="text-xl font-bold uppercase text-red-600">${ss.fields.name || ss.fields.subseriesName || '未命名子系列'}</h2>
