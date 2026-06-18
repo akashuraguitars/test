@@ -912,7 +912,7 @@
                     </section>
                     ${filtered.map(s => `
                         <div onclick="renderSubSeries('${s.sys.id}')" class="bg-black/85 p-4 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
-                            <div class="aspect-[16/9] bg-black overflow-hidden mb-4">
+                            <div class="aspect-[16/9] bg-[#1f1715] overflow-hidden mb-4 border border-red-950/40">
                                 <img src="${getImageUrl(s.fields)}" class="w-full h-full object-contain object-center">
                             </div>
                             <h2 class="text-xl font-bold uppercase text-red-600">${s.fields.series || '未命名系列'}</h2>
@@ -931,7 +931,7 @@
                 });
                 view.innerHTML = filtered.map(ss => `
                     <div onclick="renderProducts('${ss.sys.id}')" class="bg-black/85 p-4 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
-                        <div class="aspect-[16/9] bg-black overflow-hidden mb-4">
+                        <div class="aspect-[16/9] bg-[#1f1715] overflow-hidden mb-4 border border-red-950/40">
                             <img src="${getImageUrl(ss.fields)}" class="w-full h-full object-contain object-center">
                         </div>
                         <h2 class="text-xl font-bold uppercase text-red-600">${ss.fields.name || ss.fields.subseriesName || '未命名子系列'}</h2>
@@ -950,7 +950,7 @@
                 if (filtered.length === 0) { view.innerHTML = '<p class="col-span-3 text-center uppercase">目前没有产品。</p>'; return; }
                 view.innerHTML = filtered.map(g => `
                     <a href="detail.html?id=${g.sys.id}" class="bg-black/85 p-4 shadow-lg hover:scale-105 transition block border border-white/10">
-                        <div class="aspect-[16/9] bg-black overflow-hidden mb-4">
+                        <div class="aspect-[16/9] bg-[#1f1715] overflow-hidden mb-4 border border-red-950/40">
                             <img src="${getImageUrl(g.fields)}" class="w-full h-full object-contain object-center">
                         </div>
                         <h2 class="font-bold text-lg uppercase text-red-600">${g.fields.title || '未命名琴款'}</h2>
