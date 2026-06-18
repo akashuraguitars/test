@@ -376,17 +376,16 @@
                 grid.innerHTML = products.map(item => {
                     const title = item.fields.title || '未命名产品';
                     const line = title.startsWith('NEON BEATS') ? 'NEON BEATS' : 'AKSHURA';
-                    const tier = title.match(/Standard|Modern|EVO|Chao of Blead|Flagship/i)?.[0] || '已上架';
+                    const tier = title.match(/Standard|Modern|EVO|Chao of Blade|Flagship/i)?.[0] || '已上架';
                     return `
-                        <a href="detail.html?id=${item.sys.id}" class="group bg-black text-white overflow-hidden block">
-                            <div class="relative aspect-[4/5] bg-[#050505] overflow-hidden">
+                        <a href="detail.html?id=${item.sys.id}" class="group bg-white text-[#171717] overflow-hidden block border border-red-950/25 shadow-xl">
+                            <div class="relative aspect-[16/9] bg-white overflow-hidden">
                                 <img src="${getImageUrl(item.fields)}" class="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-700" alt="${title}">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
-                                <div class="absolute left-5 right-5 bottom-5">
-                                    <p class="text-[10px] uppercase tracking-[0.28em] text-red-500 mb-2">${line}</p>
-                                    <h3 class="text-xl font-black uppercase leading-tight">${title.replace(line, '').trim()}</h3>
-                                    <p class="mt-2 text-xs uppercase tracking-[0.24em] text-gray-400">${tier}</p>
-                                </div>
+                            </div>
+                            <div class="p-5 border-t border-red-950/15">
+                                <p class="text-[10px] uppercase tracking-[0.28em] text-red-600 mb-2">${line}</p>
+                                <h3 class="text-xl font-black uppercase leading-tight text-[#171717]">${title.replace(line, '').trim()}</h3>
+                                <p class="mt-2 text-xs uppercase tracking-[0.24em] text-zinc-600">${tier}</p>
                             </div>
                         </a>
                     `;
@@ -456,8 +455,8 @@
                 },
                 {
                     line: 'AKSHURA',
-                    name: '紫焰 Chao of Blead',
-                    tier: 'Chao of Blead / 5999',
+                    name: '紫焰 Chao of Blade',
+                    tier: 'Chao of Blade / 5999',
                     tag: '高阶金属声线，从木料到拾音器都拉满',
                     specs: '桃花心木琴身 / AAA 絮状枫木 5-6mm 面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan SH2 + RTM / 24 格不锈钢 Jumbo',
                     image: 'assets/akshura-official/akshura-violet-flagship-official.jpg'
@@ -472,8 +471,8 @@
                 },
                 {
                     line: 'AKSHURA',
-                    name: '黑曜 Chao of Blead',
-                    tier: 'Chao of Blead / 5999',
+                    name: '黑曜 Chao of Blade',
+                    tier: 'Chao of Blade / 5999',
                     tag: '黑金高阶款，把低沉压迫感与华丽面板收在一起',
                     specs: '桃花心木琴身 / AAA 絮状枫木面板 / Panga Panga + Hard Maple 三拼琴颈 / Duncan NECK SH2 + BRIDGE RTM / Gloss 琴身、Matte 琴颈',
                     image: 'assets/akshura-official/akshura-obsidian-standard-official.jpg'
@@ -523,14 +522,14 @@
             return concepts
                 .filter(item => !filterLine || item.line === filterLine)
                 .map(item => `
-                <article class="group bg-black/85 text-white border border-white/10 shadow-xl overflow-hidden">
-                    <img src="${item.image}" class="w-full aspect-[4/5] object-contain bg-zinc-950" alt="${item.name}">
+                <article class="group bg-white text-[#171717] border border-red-950/25 shadow-xl overflow-hidden">
+                    <img src="${item.image}" class="w-full aspect-[16/9] object-contain bg-white p-4" alt="${item.name}">
                     <div class="p-5 md:p-6">
-                        <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 mb-2">${item.line}</p>
+                        <p class="text-[10px] uppercase tracking-[0.28em] text-zinc-500 mb-2">${item.line}</p>
                         <p class="text-xs uppercase tracking-[0.24em] text-red-700 mb-3">${item.tier}</p>
-                        <h3 class="text-xl font-black uppercase mb-3">${item.name}</h3>
-                        <p class="text-sm font-bold text-gray-100 mb-3">${item.tag}</p>
-                        <p class="text-sm leading-relaxed text-gray-300">${item.specs}</p>
+                        <h3 class="text-xl font-black uppercase mb-3 text-[#171717]">${item.name}</h3>
+                        <p class="text-sm font-bold text-zinc-800 mb-3">${item.tag}</p>
+                        <p class="text-sm leading-relaxed text-zinc-600">${item.specs}</p>
                     </div>
                 </article>
             `).join('');
@@ -545,8 +544,8 @@
                 },
                 {
                     title: 'AKSHURA',
-                    subtitle: 'Standard / EVO / Chao of Blead',
-                    body: '电吉他大类底下的金属系列。Standard 建立 HH 刀锋轮廓；EVO 升级 Ash 琴身与 UV 虎纹面板；Chao of Blead 进入桃花心木、AAA 枫木面板与 Duncan SH2 / RTM 的高阶配置。'
+                    subtitle: 'Standard / EVO / Chao of Blade',
+                    body: '电吉他大类底下的金属系列。Standard 建立 HH 刀锋轮廓；EVO 升级 Ash 琴身与 UV 虎纹面板；Chao of Blade 进入桃花心木、AAA 枫木面板与 Duncan SH2 / RTM 的高阶配置。'
                 },
             ];
 
