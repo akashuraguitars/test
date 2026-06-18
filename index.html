@@ -911,8 +911,10 @@
                         <h1 class="text-4xl md:text-6xl font-black uppercase leading-none">${category.fields.name || '未命名系列'}</h1>
                     </section>
                     ${filtered.map(s => `
-                        <div onclick="renderSubSeries('${s.sys.id}')" class="bg-black/85 p-6 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
-                            <img src="${getImageUrl(s.fields)}" class="w-full h-48 object-cover mb-4">
+                        <div onclick="renderSubSeries('${s.sys.id}')" class="bg-black/85 p-4 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
+                            <div class="aspect-[16/9] bg-black overflow-hidden mb-4">
+                                <img src="${getImageUrl(s.fields)}" class="w-full h-full object-contain object-center">
+                            </div>
                             <h2 class="text-xl font-bold uppercase text-red-600">${s.fields.series || '未命名系列'}</h2>
                         </div>
                     `).join('') || '<p class="col-span-3 text-center uppercase">这个系列尚未建立子系列</p>'}
@@ -928,8 +930,10 @@
                     return sId === seriesId;
                 });
                 view.innerHTML = filtered.map(ss => `
-                    <div onclick="renderProducts('${ss.sys.id}')" class="bg-black/85 p-6 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
-                        <img src="${getImageUrl(ss.fields)}" class="w-full h-48 object-contain object-center bg-black mb-4">
+                    <div onclick="renderProducts('${ss.sys.id}')" class="bg-black/85 p-4 shadow-lg cursor-pointer hover:scale-105 transition text-center border border-white/10">
+                        <div class="aspect-[16/9] bg-black overflow-hidden mb-4">
+                            <img src="${getImageUrl(ss.fields)}" class="w-full h-full object-contain object-center">
+                        </div>
                         <h2 class="text-xl font-bold uppercase text-red-600">${ss.fields.name || ss.fields.subseriesName || '未命名子系列'}</h2>
                     </div>
                 `).join('');
