@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akashura Guitars</title>
+    <title>Akashura Guitars | 修罗系现代电吉他</title>
+    <meta name="description" content="Akashura Guitars 将修罗图腾、现代机能与舞台辨识度做进电吉他。探索 AKSHURA、NEON BEATS 与 Chaos of Blade 系列。">
+    <meta name="keywords" content="Akashura Guitars, 电吉他, 金属琴, 修罗电吉他, AKSHURA, NEON BEATS, Chaos of Blade">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=4">
     <link rel="shortcut icon" href="favicon.ico?v=4">
     <link rel="apple-touch-icon" href="assets/favicon-192.png?v=4">
@@ -141,14 +143,34 @@
             <div class="w-full max-w-6xl mx-auto px-8 md:px-12">
                 <p class="text-[10px] md:text-xs uppercase tracking-[0.45em] text-red-500 mb-5">AKSHURA GUITARS</p>
                 <h2 class="max-w-4xl text-5xl md:text-8xl font-black uppercase leading-none text-white">CRIMSON<br>SHURA</h2>
-                <p class="max-w-lg mt-6 text-sm md:text-base text-gray-300 font-light leading-relaxed">AKASHURA 不做复古复制品。我们把修罗图腾、现代机能与舞台辨识度做进电吉他，让玩家一眼被记住。</p>
+                <p class="max-w-lg mt-6 text-sm md:text-base text-gray-300 font-light leading-relaxed">AKASHURA 不复制过去，也不把外观停在想象里。我们把修罗图腾、现代机能与舞台辨识度做进电吉他，让你的声音一开场就有身份。</p>
                 <div class="mt-8 flex flex-wrap gap-3">
-                    <button onclick="renderProductFamilyBySlug('electric-guitars')" class="w-full sm:w-auto px-7 py-3 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">进入产品</button>
-                    <button onclick="renderStoryHub()" class="w-full sm:w-auto px-7 py-3 border border-white/40 hover:border-white text-white text-xs uppercase tracking-widest">品牌故事</button>
+                    <button onclick="renderProductFamilyBySlug('electric-guitars')" class="w-full sm:w-auto px-7 py-3 bg-red-700 hover:bg-red-600 text-white text-xs uppercase tracking-widest">探索系列</button>
+                    <button onclick="renderStoryHub()" class="w-full sm:w-auto px-7 py-3 border border-white/40 hover:border-white text-white text-xs uppercase tracking-widest">认识品牌</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <section class="border-b border-red-950/70 bg-[#0b0808]">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-red-950/70">
+            <div class="px-7 py-7 md:px-10">
+                <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">01 / Identity</p>
+                <h3 class="text-xl font-black text-white mb-2">一眼认出的角色感</h3>
+                <p class="text-sm leading-relaxed text-gray-400">让琴身、琴头与配色形成完整识别，不靠通用外型抢存在感。</p>
+            </div>
+            <div class="px-7 py-7 md:px-10">
+                <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">02 / Playability</p>
+                <h3 class="text-xl font-black text-white mb-2">为真实演奏而设计</h3>
+                <p class="text-sm leading-relaxed text-gray-400">从琴颈手感、拾音配置到舞台辨识度，视觉与功能一起成立。</p>
+            </div>
+            <div class="px-7 py-7 md:px-10">
+                <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">03 / Your Sound</p>
+                <h3 class="text-xl font-black text-white mb-2">为你的声音留下位置</h3>
+                <p class="text-sm leading-relaxed text-gray-400">先找到适合你的系列，再从具体规格与配色开始建立自己的舞台形象。</p>
+            </div>
+        </div>
+    </section>
 
     <section id="totem-section" class="hidden bg-black border-y border-red-950/70">
         <div class="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-16">
@@ -316,7 +338,7 @@
                     <div class="flex items-end justify-between gap-4 mb-5">
                         <div>
                             <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-2">Featured</p>
-                            <h2 class="text-2xl md:text-4xl font-black uppercase">精选产品</h2>
+                            <h2 class="text-2xl md:text-4xl font-black uppercase">找到你的第一把 AKASHURA</h2>
                         </div>
                         <button onclick="toggleProducts()" class="hidden md:block text-xs uppercase tracking-[0.25em] text-gray-300 hover:text-white">全部产品</button>
                     </div>
@@ -327,8 +349,8 @@
                 <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] bg-black/80">
                     <div class="p-7 md:p-12 border-y border-red-950/60">
                         <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">Akashura</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">让第一眼先有价格感。</h2>
-                        <p class="mt-5 text-gray-300 leading-relaxed">更少的说明、更强的画面、更明确的入口。AKSHURA 要先像一个品牌，再像一个目录。</p>
+                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">先选择你的角色，再选择你的声音。</h2>
+                        <p class="mt-5 text-gray-300 leading-relaxed">从 AKSHURA 的重型火力，到 NEON BEATS 的鲜明律动，每个系列都有自己的舞台语言。故事告诉你它从哪里来，产品页面告诉你它适合怎么演奏。</p>
                         <div class="mt-8 flex flex-wrap gap-3">
                             <button onclick="renderStoryHub()" class="px-5 py-3 bg-red-700 hover:bg-red-600 text-xs uppercase tracking-widest">Story</button>
                             <button onclick="renderNews()" class="px-5 py-3 border border-white/30 hover:border-white text-xs uppercase tracking-widest">News</button>
