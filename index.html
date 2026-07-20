@@ -92,7 +92,7 @@
         }
     </style>
 </head>
-<body class="bg-black text-white bg-[url('bgrond.jpg')] bg-fixed bg-cover bg-center">
+<body class="bg-black text-white bg-[url('assets/shura-site-bg.png')] bg-fixed bg-cover bg-center">
 
     <!-- 导航列 -->
     <nav class="bg-black text-white p-2 md:p-5 sticky top-0 z-50">
@@ -113,7 +113,7 @@
                     <div id="dropdown-menu" class="absolute right-0 mt-2 w-56 max-h-[70vh] overflow-y-auto bg-black text-white border border-red-900/70 shadow-xl hidden p-2 z-50"></div>
                 </li>
                 <li class="text-gray-600 cursor-not-allowed">ARTISTS</li>
-                <li class="text-gray-600 cursor-not-allowed">CONTACT</li>
+                <li><button onclick="renderContact()" class="hover:text-gray-400">CONTACT</button></li>
             </ul>
         </div>
     </nav>
@@ -1147,11 +1147,75 @@
             }
         }
 
+        async function renderContact() {
+            setRoute({ contact: '1' });
+            hero.classList.add('hidden');
+            totem.classList.add('hidden');
+            symbolWall.classList.add('hidden');
+            dropdown.classList.add('hidden');
+            storyDropdown.classList.add('hidden');
+            view.innerHTML = '<p class="col-span-3 text-center uppercase tracking-widest">聯絡資訊載入中...</p>';
+
+            try {
+                const response = await client.getEntries({
+                    content_type: 'siteContact',
+                    'fields.slug': 'main',
+                    include: 1,
+                    limit: 1
+                });
+                const data = response.items[0]?.fields || { enabled: true, heading: 'CONTACT' };
+                if (data.enabled === false) {
+                    view.innerHTML = '<p class="col-span-3 text-center uppercase tracking-widest">聯絡頁面目前未開放。</p>';
+                    return;
+                }
+
+                const instagram = safeHttpUrl(data.instagramUrl);
+                const facebook = safeHttpUrl(data.facebookUrl);
+                const qrFile = data.qrCode?.fields?.file?.url || '';
+                const qrUrl = qrFile && !qrFile.startsWith('http') ? `https:${qrFile}` : qrFile;
+                const methods = [
+                    data.email ? { label: 'Email', value: data.email, href: `mailto:${data.email}` } : null,
+                    data.phone ? { label: 'Phone', value: data.phone, href: `tel:${String(data.phone).replace(/[^+\d]/g, '')}` } : null,
+                    data.lineId ? { label: 'LINE / WeChat', value: data.lineId, href: '' } : null,
+                    instagram ? { label: 'Instagram', value: data.instagramUrl, href: instagram } : null,
+                    facebook ? { label: 'Facebook', value: data.facebookUrl, href: facebook } : null
+                ].filter(Boolean);
+
+                view.innerHTML = `
+                    <section class="col-span-3 bg-black/85 border border-red-950/70 shadow-2xl overflow-hidden">
+                        <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr]">
+                            <div class="p-7 md:p-12">
+                                <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-4">Contact / Collaboration</p>
+                                <h1 class="text-4xl md:text-7xl font-black uppercase leading-none text-white">${escapeText(data.heading || 'CONTACT')}</h1>
+                                ${data.description ? `<p class="mt-6 max-w-2xl whitespace-pre-line text-gray-300 leading-relaxed">${escapeText(data.description)}</p>` : ''}
+                                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    ${methods.map(method => {
+                                        const content = `<p class="text-[10px] uppercase tracking-[0.28em] text-red-500 mb-2">${method.label}</p><p class="font-bold break-words text-white">${escapeText(method.value)}</p>`;
+                                        return method.href
+                                            ? `<a href="${escapeText(method.href)}" ${method.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="block border border-white/10 bg-black/60 p-5 hover:border-red-700 transition">${content}</a>`
+                                            : `<div class="border border-white/10 bg-black/60 p-5">${content}</div>`;
+                                    }).join('') || '<p class="text-sm text-gray-400">聯絡方式整理中。</p>'}
+                                </div>
+                                ${data.address ? `<div class="mt-5 border-l-4 border-red-700 pl-5"><p class="text-[10px] uppercase tracking-[0.28em] text-red-500 mb-2">Address</p><p class="whitespace-pre-line text-gray-300">${escapeText(data.address)}</p></div>` : ''}
+                            </div>
+                            <aside class="bg-red-950/40 text-white p-7 md:p-10 flex flex-col items-center justify-center text-center min-h-[420px]">
+                                ${qrUrl ? `<img src="${escapeText(qrUrl)}" class="w-full max-w-[290px] aspect-square object-contain bg-white p-4 shadow-2xl" alt="AKASHURA contact QR Code">` : '<div class="w-full max-w-[290px] aspect-square border border-white/20 grid place-items-center text-xs uppercase tracking-widest">QR Code</div>'}
+                                ${data.qrDescription ? `<p class="mt-6 whitespace-pre-line text-sm leading-relaxed text-gray-200">${escapeText(data.qrDescription)}</p>` : ''}
+                            </aside>
+                        </div>
+                    </section>`;
+            } catch (error) {
+                console.error(error);
+                view.innerHTML = '<p class="col-span-3 text-center text-red-500 uppercase">聯絡資訊載入失敗。</p>';
+            }
+        }
+
         initNav();
         
         const urlParams = new URLSearchParams(window.location.search);
         const storyParam = urlParams.get('story');
         const newsParam = urlParams.get('news');
+        const contactParam = urlParams.get('contact');
         const familyParam = urlParams.get('family');
         const familySlugParam = urlParams.get('familySlug');
         const catParam = urlParams.get('cat');
@@ -1163,6 +1227,8 @@
             renderStory(storyParam);
         } else if (newsParam) {
             renderNews();
+        } else if (contactParam) {
+            renderContact();
         } else if (familySlugParam) {
             renderProductFamilyBySlug(familySlugParam);
         } else if (familyParam) {
