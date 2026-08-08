@@ -280,6 +280,19 @@
         function toggleProducts() { dropdown.classList.toggle('hidden'); storyDropdown.classList.add('hidden'); }
         function toggleStory() { storyDropdown.classList.toggle('hidden'); dropdown.classList.add('hidden'); }
 
+        function escapeText(value) {
+            return String(value ?? '').replace(/[&<>'"]/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            })[char]);
+        }
+
+        function safeHttpUrl(value) {
+            try {
+                const url = new URL(String(value || ''), window.location.origin);
+                return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+            } catch (_) { return ''; }
+        }
+
         function getImageUrl(fields) {
             const img = fields.image || fields.seriesImage || fields.subseriesImage;
             if (Array.isArray(img)) return img[0]?.fields?.file ? 'https:' + img[0].fields.file.url : null;
