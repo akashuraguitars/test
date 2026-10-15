@@ -44,7 +44,7 @@
                     <a href="index.html" onclick="event.preventDefault(); renderHome();" class="hover:text-gray-400">HOME</a>
                 </li>
                 <li class="relative">
-                    <button onclick="toggleStory()" class="hover:text-gray-400">STORY</button>
+                    <button onclick="renderStoryHub()" class="hover:text-gray-400">品牌故事</button>
                     <div id="story-dropdown" class="absolute right-0 mt-2 w-64 max-h-[70vh] overflow-y-auto bg-black text-white border border-red-900/70 shadow-xl hidden p-2 z-50"></div>
                 </li>
                 <li class="relative">
@@ -330,18 +330,12 @@
                         ${conceptCards()}
                     </div>
                 </section>
-                <section class="col-span-3 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] bg-black/80">
-                    <div class="p-7 md:p-12 border-y border-red-950/60">
-                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">Akashura</p>
-                        <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight">先选择你的角色，再选择你的声音。</h2>
-                        <p class="mt-5 text-gray-300 leading-relaxed">从 AKSHURA 的重型火力，到 NEON BEATS 的鲜明律动，每个系列都有自己的舞台语言。故事告诉你它从哪里来，产品页面告诉你它适合怎么演奏。</p>
-                        <div class="mt-8 flex flex-wrap gap-3">
-                            <button onclick="renderStoryHub()" class="px-5 py-3 bg-red-700 hover:bg-red-600 text-xs uppercase tracking-widest">Story</button>
-                            <button onclick="renderNews()" class="px-5 py-3 border border-white/30 hover:border-white text-xs uppercase tracking-widest">News</button>
-                        </div>
-                    </div>
-                    <div id="home-story-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
-                        ${storyGuide()}
+                <section class="col-span-3 border-y border-red-950/60 bg-black/80">
+                    <div class="p-7 md:p-12 lg:p-16">
+                        <p class="text-xs uppercase tracking-[0.35em] text-red-500 mb-5">AKASHURA / BRAND STORY</p>
+                        <h2 class="max-w-4xl text-3xl md:text-5xl font-black leading-tight text-white">在吉他修行中，燃烧的赤红之火。</h2>
+                        <p class="mt-5 max-w-4xl text-base md:text-lg text-gray-300 leading-relaxed">音乐，是世界上最苦涩也最甜美的修行。每一次反复练习，都是与自我进行的无声战斗；AKASHURA 把这份修行感、赤红火焰与现代电吉他设计，放进同一个品牌故事。</p>
+                        <button onclick="renderStoryHub()" class="mt-8 px-6 py-3 bg-red-700 hover:bg-red-600 text-xs uppercase tracking-widest">阅读品牌故事</button>
                     </div>
                 </section>
             `;
@@ -783,17 +777,12 @@
                     dropdown.innerHTML = '<p class="px-4 py-2 text-xs text-gray-500">数据库尚未建立产品架构</p>';
                 }
                 
-                const storyData = await client.getEntries({ content_type: 'story' });
                 storyDropdown.innerHTML = `
                     <button onclick="renderStoryHub(); toggleStory();" class="block w-full text-left px-4 py-3 hover:bg-red-950/60">
                         <span class="block text-[10px] uppercase tracking-[0.2em] text-red-500">Story</span>
-                        <span class="block pt-1 text-sm font-black text-white truncate">故事总览</span>
+                        <span class="block pt-1 text-sm font-black text-white truncate">品牌故事</span>
                     </button>
-                ` + storyData.items.map(s => `
-                    <button onclick="renderStory('${s.sys.id}'); toggleStory();" class="block w-full text-left px-4 py-3 hover:bg-red-950/60 uppercase">
-                        <span class="block text-sm font-black text-white truncate">${s.fields.brandStory || '品牌故事'}</span>
-                    </button>
-                `).join('');
+                `;
                 
                 const siteData = await client.getEntries({ content_type: 'siteSettings', include: 1 });
                 if (siteData.items.length > 0) {
@@ -1042,6 +1031,18 @@
                                 <p>后来，AKASHURA 又慢慢长出了赤红修罗、夜叉、神器、不同系列，最后变成现在这个吉他宇宙。</p>
                             </div>
                         </div>
+                        <div class="my-12 md:my-16 border-l-2 border-red-700 pl-6 md:pl-10">
+                            <p class="text-xs uppercase tracking-[0.32em] text-red-500 mb-5">在吉他修行中，燃烧的赤红之火</p>
+                            <div class="space-y-5 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p>音乐，是世界上最苦涩也最甜美的修行。每一位拿起乐器的人，都是孤独的行者；每一次艰难的推音、每一段被反复咀嚼的乐句，其实都是在与自我进行一场无声的战斗。</p>
+                                <p>在追逐音乐梦想的旅途中，James Chiang 与永声总经理申勇看见亚洲音乐的蓬勃，也看见一个遗憾：我们为什么不能拥有一个真正属于这里，并且能够与世界对话的品牌？这不仅是一份商业上的契合，更是一场关于文化与产品的远征。于是，“Akashura 赤红修罗”诞生了。</p>
+                                <p>赤红，是指尖摩擦出的火光，是不被世俗磨灭的炽热初心；修罗，是为了追求极致，在艰苦修行中历经磨难却依然强悍、不服输的战斗灵魂。</p>
+                                <p>AKASHURA 不想再做一把便宜的复古复制品。市场已经不缺另一把仿古琴，玩家真正需要的是合理的价位、稳定的手感、清楚的定位，以及一把有自己脾气的乐器。</p>
+                                <p>新世代玩家不只想买规格，也想买一种身份。吉他要能拍照、能上短影音、能站上舞台，也要真的好弹、好录、好改、好带走。视觉是玩家愿意分享的理由；机能则是每次排练、录音、演出都能感受到的价值。</p>
+                                <p>因此，AKASHURA 的故事沿着品牌宣言、设计语言、产品开发与世界观视觉持续延伸。赤红修罗、女性夜叉、浮世绘纸本、黑曜与金色硬件，都会回到同一个核心：让产品不只是商品，而是角色。每一个系列都应该能变成 Demo、短片、封面视觉与舞台造型。</p>
+                                <p>AKASHURA 的故事不是写在纸上的营销文案，而是写在每一把琴的轮廓、配色、手感与声音里。当你握住 AKASHURA 的那一刻，修行即刻开始。</p>
+                            </div>
+                        </div>
                         <div class="my-12 grid grid-cols-1 md:grid-cols-3 gap-px bg-red-950 border border-red-950">
                             <div class="bg-[#0c0909] p-6 md:p-8"><p class="text-xs uppercase tracking-[0.28em] text-red-500 mb-3">01 / RED</p><p class="font-black text-xl text-white">颜色与意志</p><p class="mt-3 text-sm leading-relaxed text-gray-400">鲜明的红、火焰般的生命力，以及不轻易熄灭的热情。</p></div>
                             <div class="bg-[#0c0909] p-6 md:p-8"><p class="text-xs uppercase tracking-[0.28em] text-red-500 mb-3">02 / SHURA</p><p class="font-black text-xl text-white">神话与战斗</p><p class="mt-3 text-sm leading-relaxed text-gray-400">执念、冲突、修练，也是不停向前的力量。</p></div>
@@ -1112,7 +1113,7 @@
                         <img src="${getStoryHeroImage()}" class="absolute inset-0 w-full h-full object-cover opacity-70" alt="AKSHURA 吉他故事横幅">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                         <div class="absolute left-6 right-6 bottom-6 md:left-10 md:right-10 md:bottom-10">
-                            <button onclick="renderStoryHub()" class="mb-5 text-xs uppercase tracking-[0.28em] text-red-400 hover:text-white">Story 总览</button>
+                            <button onclick="renderStoryHub()" class="mb-5 text-xs uppercase tracking-[0.28em] text-red-400 hover:text-white">品牌故事</button>
                             <h1 class="text-3xl md:text-6xl font-black uppercase leading-tight">${fields.brandStory || '品牌故事'}</h1>
                         </div>
                     </div>
