@@ -789,7 +789,6 @@
                     const fields = siteData.items[0].fields;
                     const heroImg = document.getElementById('hero-image');
                     if (fields.heroImage && !heroImg.getAttribute('src')) heroImg.src = 'https:' + fields.heroImage.fields.file.url;
-                    if (fields.brandName) brandImage.src = 'https:' + fields.brandName.fields.file.url;
                     brandSlogan.textContent = 'Built for Your Own Sound';
                 }
             } catch (err) { console.error(err); }
