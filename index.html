@@ -32,64 +32,6 @@
             background: #b91c1c;
             border-color: #dc2626;
         }
-        .hyper-frame {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            overscroll-behavior-x: contain;
-            scroll-snap-type: x mandatory;
-            padding: 6px 0 18px;
-        }
-        .hyper-frame::-webkit-scrollbar {
-            height: 6px;
-        }
-        .hyper-frame::-webkit-scrollbar-thumb {
-            background: #991b1b;
-        }
-        .hyper-card {
-            position: relative;
-            flex: 0 0 clamp(260px, 34vw, 420px);
-            min-height: 360px;
-            overflow: hidden;
-            scroll-snap-align: center;
-            border: 1px solid rgba(127, 29, 29, 0.75);
-            background: #050101;
-        }
-        .hyper-card img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.78;
-            transition: transform 800ms ease, opacity 800ms ease;
-        }
-        .hyper-card:hover img {
-            transform: scale(1.08);
-            opacity: 0.95;
-        }
-        .hyper-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.15) 52%, rgba(127, 29, 29, 0.18)),
-                repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 7px);
-            mix-blend-mode: normal;
-        }
-        .hyper-card-body {
-            position: absolute;
-            left: 22px;
-            right: 22px;
-            bottom: 22px;
-            z-index: 1;
-        }
-        @media (max-width: 640px) {
-            .hyper-card {
-                flex-basis: 82vw;
-                min-height: 330px;
-            }
-        }
     </style>
 </head>
 <body class="bg-black text-white bg-[url('bgrond.jpg')] bg-fixed bg-cover bg-center">
@@ -1064,42 +1006,93 @@
             symbolWall.classList.add('hidden');
             dropdown.classList.add('hidden');
             storyDropdown.classList.add('hidden');
-
-            try {
-                const data = await client.getEntries({ content_type: 'story', include: 2, limit: 20 });
-                const storyCards = data.items.map(story => `
-                    <button onclick="renderStory('${story.sys.id}')" class="group text-left bg-black/85 text-white border border-white/10 overflow-hidden">
-                        <div class="aspect-[16/10] bg-black overflow-hidden">
-                            <img src="${getStoryImage(story.fields)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${story.fields.brandStory || '品牌故事'}">
+            view.innerHTML = `
+                <article class="col-span-3 -mx-5 md:-mx-10 -mt-5 md:-mt-10 overflow-hidden bg-[#080707] text-gray-100">
+                    <section class="grid grid-cols-1 lg:grid-cols-[1.02fr_0.98fr] bg-black">
+                        <div class="flex flex-col justify-center p-7 md:p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-red-950/70">
+                            <p class="text-xs uppercase tracking-[0.42em] text-red-500 mb-5">AKASHURA / BRAND ORIGIN</p>
+                            <h1 class="text-4xl md:text-6xl xl:text-7xl font-black leading-[1.06] text-white">从喜欢开始，<br>做一把有性格的琴。</h1>
+                            <p class="mt-7 text-base md:text-lg leading-relaxed text-gray-300">AKASHURA 并不是一开始就被设定成一个完整的吉他品牌。它更像是把我一路以来真正喜欢的东西，慢慢放进同一个世界里。</p>
+                            <p class="mt-5 text-sm uppercase tracking-[0.22em] text-red-400">创造个性化声音，不走寻常路。</p>
                         </div>
-                        <div class="p-6">
-                            <p class="text-[10px] uppercase tracking-[0.3em] text-red-500 mb-3">数据库文章</p>
-                            <h3 class="text-2xl font-black uppercase mb-3">${story.fields.brandStory || '品牌故事'}</h3>
-                            <p class="text-sm leading-relaxed text-gray-300">${getStorySummary(story.fields)}</p>
+                        <figure class="relative min-h-[430px] lg:min-h-[660px] bg-[#0d0b0a]">
+                            <img src="assets/brand-story-yaksha-origin.webp" class="absolute inset-0 w-full h-full object-cover object-center" alt="夜叉与紫色 AKASHURA 电吉他，浮世绘神怪世界中的品牌形象" decoding="async">
+                            <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent px-6 pt-20 pb-5 text-xs tracking-[0.16em] text-white/80">夜叉 · 紫色 Super Strat · AKASHURA 的幻想与声音</figcaption>
+                        </figure>
+                    </section>
+                    <section class="max-w-5xl mx-auto px-6 py-12 md:px-12 md:py-20">
+                        <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 md:gap-12">
+                            <p class="text-xs uppercase tracking-[0.28em] text-red-500 md:pt-2">灵感的起点</p>
+                            <div class="space-y-5 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p>我喜欢电子游戏、日本漫画、重金属、摇滚乐，也一直很着迷那些带着强烈个性的视觉文化。像是《战神》里混沌之刃那种锐利、带武器感的轮廓，日本百鬼夜行、浮世绘的线条与色彩，腥红、鲜红的视觉张力，还有《孔雀王》那种神怪、宗教、妖异与战斗交织的气氛。</p>
+                                <p>这些东西看起来彼此不同，但对我来说，它们其实都有一个共通点——很有性格。</p>
+                                <p>所以当我开始构思自己的电吉他时，我不想做一把只是“规格正确”的琴。我希望它第一眼就能让人记住。</p>
+                                <p>琴头最早的灵感，就来自我很喜欢的《战神》混沌之刃。不是直接去复制它，而是把那种刀刃、战斗、速度、危险感，重新转化成属于吉他的线条。</p>
+                            </div>
                         </div>
-                    </button>
-                `).join('');
-
-                view.innerHTML = `
-                    <section class="col-span-3 -mx-5 md:-mx-10 -mt-5 md:-mt-10 mb-4">
-                        <div class="relative min-h-[380px] md:min-h-[520px] overflow-hidden bg-black">
-                            <img src="assets/akashura-fire-banner.jpg" class="absolute inset-0 w-full h-full object-cover opacity-75" alt="AKSHURA Story 火焰横幅">
-                            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-red-950/25"></div>
-                            <div class="absolute inset-0 flex items-center">
-                                <div class="max-w-6xl mx-auto w-full px-8 md:px-12">
-                                    <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-4">Story</p>
-                                    <h1 class="text-4xl md:text-7xl font-black uppercase leading-none">品牌故事与开发脉络</h1>
-                                    <p class="max-w-2xl mt-5 text-sm md:text-lg text-gray-200 leading-relaxed">Story 区会承接品牌宣言、修罗视觉、产品设计语言与开发日志。这里不是单纯介绍历史，而是持续说明 AKASHURA 为什么反复制品、为什么强调角色感，以及每个系列如何从图像走向舞台。</p>
-                                </div>
+                        <div class="my-12 md:my-16 border-y border-white/15 py-8 md:py-10 text-center">
+                            <p class="text-xs uppercase tracking-[0.32em] text-red-500 mb-4">THE FIRST IMPRESSION</p>
+                            <p class="text-2xl md:text-4xl font-black leading-snug text-white">我不想做一把只是“规格正确”的琴。<br>我希望它第一眼就能让人记住。</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 md:gap-12">
+                            <p class="text-xs uppercase tracking-[0.28em] text-red-500 md:pt-2">名字慢慢长出来</p>
+                            <div class="space-y-5 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p>品牌名称也是同样的方式慢慢长出来。我一直很喜欢“赤”这个字。日文里的 AKA，就是赤、红、鲜明的意思；而我也一直很喜欢阿修罗这种传统神话角色。</p>
+                                <p>当 AKA 和 ASHURA 放在一起，AKASHURA 就出现了。那一刻其实很自然。红色、火焰、修罗、执念、战斗、艺术、音乐，这些原本散落在我心里的东西，好像终于有了一个共同的名字。</p>
+                                <p>后来，AKASHURA 又慢慢长出了赤红修罗、夜叉、神器、不同系列，最后变成现在这个吉他宇宙。</p>
+                            </div>
+                        </div>
+                        <div class="my-12 grid grid-cols-1 md:grid-cols-3 gap-px bg-red-950 border border-red-950">
+                            <div class="bg-[#0c0909] p-6 md:p-8"><p class="text-xs uppercase tracking-[0.28em] text-red-500 mb-3">01 / RED</p><p class="font-black text-xl text-white">颜色与意志</p><p class="mt-3 text-sm leading-relaxed text-gray-400">鲜明的红、火焰般的生命力，以及不轻易熄灭的热情。</p></div>
+                            <div class="bg-[#0c0909] p-6 md:p-8"><p class="text-xs uppercase tracking-[0.28em] text-red-500 mb-3">02 / SHURA</p><p class="font-black text-xl text-white">神话与战斗</p><p class="mt-3 text-sm leading-relaxed text-gray-400">执念、冲突、修练，也是不停向前的力量。</p></div>
+                            <div class="bg-[#0c0909] p-6 md:p-8"><p class="text-xs uppercase tracking-[0.28em] text-red-500 mb-3">03 / SOUND</p><p class="font-black text-xl text-white">角色与音乐</p><p class="mt-3 text-sm leading-relaxed text-gray-400">让视觉、乐器和演奏者的个性进入同一个世界。</p></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 md:gap-12">
+                            <p class="text-xs uppercase tracking-[0.28em] text-red-500 md:pt-2">先看见气质</p>
+                            <div class="space-y-5 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p>我以前本身就是从事艺术创作的，所以在看一把吉他的时候，我很难只看木材、拾音器或硬件。</p>
+                                <p>我会去看比例、线条、颜色、气质，也会去想：这把琴拿在一个人手上的时候，像不像他自己？它有性格吗？它能不能让人产生一种“我想拿起来”的冲动？</p>
+                            </div>
+                        </div>
+                        <div class="my-12 md:my-16 bg-red-950/55 border-y border-red-800/60 px-7 py-9 md:px-12 md:py-12">
+                            <p class="text-xs uppercase tracking-[0.32em] text-red-400 mb-5">A GUITAR IS A BEGINNING</p>
+                            <p class="text-2xl md:text-4xl font-black leading-snug text-white">因为说到底，我们很多人最初拿起电吉他的时候，都还只是个孩子。</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 md:gap-12">
+                            <p class="text-xs uppercase tracking-[0.28em] text-red-500 md:pt-2">最初喜欢的理由</p>
+                            <div class="space-y-5 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p>可能是第一次看到舞台上的吉他手，第一次听到一段让自己全身起鸡皮疙瘩的 Solo，第一次觉得原来六条弦也可以这么有力量。</p>
+                                <p>那时我们不懂规格，不懂木材，不懂音箱，不懂效果器。我们只是单纯地觉得：<strong class="text-red-400">电吉他很酷。</strong></p>
+                                <p>然后就很想拥有一把，很想把它背在身上，很想弹出自己心里想象的声音。</p>
+                                <p>很多年过去，我们学会了更多技巧，也开始懂器材、懂音色、懂演奏，但我一直觉得，那个最早想拿起电吉他的孩子，其实从来没有真的消失，只是长大以后，我们常常忘了他。</p>
+                                <p>AKASHURA 想保留的，就是那个感觉。不是叫人永远停留在青春，也不是刻意怀旧。而是希望当一个人再次拿起 AKASHURA 的吉他时，还能重新想起：<strong class="text-white">我当初为什么会喜欢上电吉他？</strong></p>
+                                <p>也许是因为自由，也许是因为反叛，也许是因为舞台，也许只是因为那一刻，真的觉得它帅得不得了。而那份冲动，其实就是很多音乐故事真正开始的地方。</p>
+                            </div>
+                        </div>
+                        <div class="my-12 md:my-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div class="space-y-4 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p class="text-xs uppercase tracking-[0.32em] text-red-500">FROM IMAGE TO INSTRUMENT</p>
+                                <h2 class="text-3xl md:text-4xl font-black leading-tight text-white">让艺术真正进入一把琴。</h2>
+                                <p>AKASHURA 希望做的，就是把这份最初的喜欢，和我对艺术、漫画、神怪文化、重金属与摇滚的审美重新放进一把琴里。</p>
+                            </div>
+                            <div class="border-l-2 border-red-700 pl-6 md:pl-9 text-lg md:text-xl leading-relaxed text-gray-200">
+                                <p>我希望它不只是工具，也不只是规格表上的数字，而是一把你会想一直看着它、拿起它、带上舞台，甚至很多年以后仍然记得自己第一次看到它时感觉的吉他。</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 md:gap-12">
+                            <p class="text-xs uppercase tracking-[0.28em] text-red-500 md:pt-2">自己的声音</p>
+                            <div class="space-y-5 text-base md:text-lg leading-[1.9] text-gray-300">
+                                <p>就像赤红修罗一样，一路征战，一路修练，一路把自己的声音打出去。但真正重要的，并不是最后变成谁，而是有一天你终于发现：你已经不需要再像任何人。</p>
+                                <p>你有了自己的声音。而那个曾经第一次拿起电吉他的孩子，也终于弹出了属于自己的东西。</p>
                             </div>
                         </div>
                     </section>
-                    ${hyperFrameShowcase()}
-                    <section class="col-span-3 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-                        ${storyCards || storyGuide()}
-                    </section>
-                `;
-            } catch (err) { console.error(err); }
+                    <footer class="bg-[#050404] border-t border-red-950 px-6 py-12 md:px-12 md:py-16 text-center text-white">
+                        <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-4">AKASHURA GUITARS</p>
+                        <p class="text-2xl md:text-4xl font-black">创造个性化声音，不走寻常路。</p>
+                    </footer>
+                </article>
+            `;
         }
 
         async function renderStory(storyId) {
@@ -1123,7 +1116,6 @@
                             <h1 class="text-3xl md:text-6xl font-black uppercase leading-tight">${fields.brandStory || '品牌故事'}</h1>
                         </div>
                     </div>
-                    ${hyperFrameShowcase()}
                     <div class="p-7 md:p-12">
                         ${content || '<p class="text-gray-300 leading-relaxed">这篇故事已经建立，内容可以继续从 Contentful 补齐。</p>'}
                     </div>
