@@ -245,13 +245,13 @@
             if (/ASCETIC PATH|KARMIC INFERNO|HEAVENSCORCH|SILENT NIRVANA|VEILED MOON/i.test(name)) return name;
             const series = officialSeriesName(seriesName);
             if (series === 'AKASHURA SERIES') {
-                if (/^Standard$/i.test(name)) return '修行 / ASCETIC PATH — Standard';
-                if (/^EVO$/i.test(name)) return '红莲业火 / KARMIC INFERNO — EVO';
-                if (/^Chaos of Blade$/i.test(name)) return '焚天 / HEAVENSCORCH — Chaos of Blade';
+                if (/^Standard$/i.test(name)) return '修行 / ASCETIC PATH';
+                if (/^EVO$/i.test(name)) return '红莲业火 / KARMIC INFERNO';
+                if (/^Chaos of Blade$/i.test(name)) return '焚天 / HEAVENSCORCH';
             }
             if (series === 'YAKSHA SERIES') {
-                if (/^Modern$/i.test(name)) return '寂灭 / SILENT NIRVANA — Modern';
-                if (/^Standard$/i.test(name)) return '幽月 / VEILED MOON — Standard';
+                if (/^Modern$/i.test(name)) return '寂灭 / SILENT NIRVANA';
+                if (/^Standard$/i.test(name)) return '幽月 / VEILED MOON';
             }
             return name || '未命名子系列';
         }
@@ -583,12 +583,12 @@
                 {
                     title: 'YAKSHA SERIES',
                     subtitle: '寂灭 / SILENT NIRVANA · 幽月 / VEILED MOON',
-                    body: 'YAKSHA SERIES 系列：Modern 对应寂灭 SILENT NIRVANA；Standard 对应幽月 VEILED MOON。'
+                    body: 'YAKSHA SERIES 的两个子系列：寂灭与幽月。'
                 },
                 {
                     title: 'AKASHURA SERIES',
                     subtitle: '修行 / ASCETIC PATH · 红莲业火 / KARMIC INFERNO · 焚天 / HEAVENSCORCH',
-                    body: 'AKASHURA SERIES 金属系列：Standard 对应修行 ASCETIC PATH；EVO 对应红莲业火 KARMIC INFERNO；Chaos of Blade 对应焚天 HEAVENSCORCH。'
+                    body: 'AKASHURA SERIES 的三个子系列：修行、红莲业火与焚天。'
                 },
             ];
 
