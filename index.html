@@ -234,6 +234,27 @@
                 return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
             } catch (_) { return ''; }
         }
+        function officialSeriesName(value) {
+            const name = String(value || '').trim();
+            if (/^(AKASHURA|AKASHURA SERIES)$/i.test(name)) return 'AKASHURA SERIES';
+            if (/^(YAKSHA|YAKSHA SERIES|NEON BEATS)$/i.test(name)) return 'YAKSHA SERIES';
+            return name;
+        }
+        function officialSubseriesName(value, seriesName) {
+            const name = String(value || '').trim();
+            if (/ASCETIC PATH|KARMIC INFERNO|HEAVENSCORCH|SILENT NIRVANA|VEILED MOON/i.test(name)) return name;
+            const series = officialSeriesName(seriesName);
+            if (series === 'AKASHURA SERIES') {
+                if (/^Standard$/i.test(name)) return '修行 / ASCETIC PATH — Standard';
+                if (/^EVO$/i.test(name)) return '红莲业火 / KARMIC INFERNO — EVO';
+                if (/^Chaos of Blade$/i.test(name)) return '焚天 / HEAVENSCORCH — Chaos of Blade';
+            }
+            if (series === 'YAKSHA SERIES') {
+                if (/^Modern$/i.test(name)) return '寂灭 / SILENT NIRVANA — Modern';
+                if (/^Standard$/i.test(name)) return '幽月 / VEILED MOON — Standard';
+            }
+            return name || '未命名子系列';
+        }
 
         function getImageUrl(fields) {
             const img = fields.image || fields.seriesImage || fields.subseriesImage;
@@ -895,7 +916,7 @@
                                     </div>
                                     <div class="p-6">
                                         <p class="text-[10px] uppercase tracking-[0.25em] text-red-700 mb-3">${family.fields.name || '产品大类'}</p>
-                                        <h3 class="text-2xl font-black uppercase">${series.fields.series || '未命名系列'}</h3>
+                                        <h3 class="text-2xl font-black uppercase">${officialSeriesName(series.fields.series) || '未命名系列'}</h3>
                                     </div>
                                 </button>
                             `).join('') || '<p class="col-span-3 text-center uppercase">这个大类的系列规划中。</p>'}
@@ -933,7 +954,7 @@
                             <div class="aspect-[16/9] bg-black overflow-hidden mb-4 border border-red-950/40">
                                 <img src="${getImageUrl(s.fields)}" class="w-full h-full object-contain object-center">
                             </div>
-                            <h2 class="text-xl font-bold uppercase text-red-600">${s.fields.series || '未命名系列'}</h2>
+                            <h2 class="text-xl font-bold uppercase text-red-600">${officialSeriesName(s.fields.series) || '未命名系列'}</h2>
                         </div>
                     `).join('') || '<p class="col-span-3 text-center uppercase">这个系列尚未建立子系列</p>'}
                 `;
@@ -944,6 +965,8 @@
             setRoute({ series: seriesId });
             try {
                 const data = await client.getEntries({ content_type: 'subseries' });
+                const parent = await client.getEntry(seriesId).catch(() => null);
+                const parentName = officialSeriesName(parent?.fields?.series || '');
                 const filtered = data.items.filter(ss => {
                     const sId = Array.isArray(ss.fields.series) ? ss.fields.series[0]?.sys?.id : ss.fields.series?.sys?.id;
                     return sId === seriesId;
@@ -953,7 +976,7 @@
                         <div class="aspect-[16/9] bg-black overflow-hidden mb-4 border border-red-950/40">
                             <img src="${getImageUrl(ss.fields)}" class="w-full h-full object-contain object-center">
                         </div>
-                        <h2 class="text-xl font-bold uppercase text-red-600">${ss.fields.name || ss.fields.subseriesName || '未命名子系列'}</h2>
+                        <h2 class="text-xl font-bold uppercase text-red-600">${officialSubseriesName(ss.fields.name || ss.fields.subseriesName, parentName)}</h2>
                     </div>
                 `).join('');
             } catch (err) { console.error(err); }
